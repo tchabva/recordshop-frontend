@@ -10,7 +10,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.northcoders.recordshop.model.AlbumRepository;
-import com.northcoders.recordshop.model.service.AlbumApiService;
 
 public class MainActivity extends AppCompatActivity {
 
