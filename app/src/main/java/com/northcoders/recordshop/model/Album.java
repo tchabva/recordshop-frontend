@@ -1,11 +1,14 @@
 package com.northcoders.recordshop.model;
 
+import android.widget.TextView;
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.databinding.BindingAdapter;
 
 import com.northcoders.recordshop.BR;
 
-import java.sql.Date;
+import java.text.DecimalFormat;
 
 public class Album extends BaseObservable {
     private long id;
@@ -15,10 +18,11 @@ public class Album extends BaseObservable {
     private String releaseDate;
     private int stock;
     private double price;
+    private String artworkUrl;
     private String dateCreated;
     private String dateModified;
 
-    public Album(long id, String title, String artist, String genre, String releaseDate, int stock, double price, String dateCreated, String dateModified) {
+    public Album(long id, String title, String artist, String genre, String releaseDate, int stock, double price, String artworkUrl, String dateCreated, String dateModified) {
         this.id = id;
         this.title = title;
         this.artist = artist;
@@ -26,13 +30,13 @@ public class Album extends BaseObservable {
         this.releaseDate = releaseDate;
         this.stock = stock;
         this.price = price;
+        this.artworkUrl = artworkUrl;
         this.dateCreated = dateCreated;
         this.dateModified = dateModified;
     }
 
     public Album() {
     }
-
 
     public String getDateModified() {
         return dateModified;
@@ -52,6 +56,13 @@ public class Album extends BaseObservable {
         notifyPropertyChanged(BR.price);
     }
 
+    @BindingAdapter("android:text")
+    public static void setPrice(TextView view, double price) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        String stringPrice = df.format(price);
+        view.setText("£".concat(stringPrice));
+    }
+
     @Bindable
     public int getStock() {
         return stock;
@@ -60,6 +71,11 @@ public class Album extends BaseObservable {
     public void setStock(int stock) {
         this.stock = stock;
         notifyPropertyChanged(BR.stock);
+    }
+
+    @BindingAdapter("android:text")
+    public static void setStock(TextView view, int stock) {
+        view.setText(String.valueOf(stock));
     }
 
     @Bindable
@@ -105,6 +121,10 @@ public class Album extends BaseObservable {
     @Bindable
     public long getId() {
         return id;
+    }
+
+    public String getArtworkUrl() {
+        return artworkUrl;
     }
 
     public void setId(long id) {
