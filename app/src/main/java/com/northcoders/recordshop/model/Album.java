@@ -12,13 +12,13 @@ public class Album extends BaseObservable {
     private String title;
     private String artist;
     private String genre;
-    private Date releaseDate;
+    private String releaseDate;
     private int stock;
     private double price;
     private String dateCreated;
     private String dateModified;
 
-    public Album(long id, String title, String artist, String genre, Date releaseDate, int stock, double price, String dateCreated, String dateModified) {
+    public Album(long id, String title, String artist, String genre, String releaseDate, int stock, double price, String dateCreated, String dateModified) {
         this.id = id;
         this.title = title;
         this.artist = artist;
@@ -63,11 +63,11 @@ public class Album extends BaseObservable {
     }
 
     @Bindable
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
         notifyPropertyChanged(BR.releaseDate);
     }
