@@ -1,8 +1,11 @@
 package com.northcoders.recordshop.model;
 
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
 import java.sql.Date;
 
-public class Album {
+public class Album extends BaseObservable {
     private long id;
     private String title;
     private String artist;
@@ -28,22 +31,16 @@ public class Album {
     public Album() {
     }
 
+
     public String getDateModified() {
         return dateModified;
-    }
-
-    public void setDateModified(String dateModified) {
-        this.dateModified = dateModified;
     }
 
     public String getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
+    @Bindable
     public double getPrice() {
         return price;
     }
@@ -52,6 +49,7 @@ public class Album {
         this.price = price;
     }
 
+    @Bindable
     public int getStock() {
         return stock;
     }
@@ -60,6 +58,7 @@ public class Album {
         this.stock = stock;
     }
 
+    @Bindable
     public Date getReleaseDate() {
         return releaseDate;
     }
@@ -68,6 +67,7 @@ public class Album {
         this.releaseDate = releaseDate;
     }
 
+    @Bindable
     public String getGenre() {
         return genre;
     }
@@ -76,6 +76,7 @@ public class Album {
         this.genre = genre;
     }
 
+    @Bindable
     public String getArtist() {
         return artist;
     }
@@ -84,6 +85,7 @@ public class Album {
         this.artist = artist;
     }
 
+    @Bindable
     public String getTitle() {
         return title;
     }
@@ -92,6 +94,7 @@ public class Album {
         this.title = title;
     }
 
+    @Bindable
     public long getId() {
         return id;
     }
