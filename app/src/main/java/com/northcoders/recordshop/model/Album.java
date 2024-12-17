@@ -1,9 +1,14 @@
 package com.northcoders.recordshop.model;
 
+import android.widget.TextView;
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.databinding.BindingAdapter;
 
 import com.northcoders.recordshop.BR;
+
+import java.text.DecimalFormat;
 
 public class Album extends BaseObservable {
     private long id;
@@ -33,7 +38,6 @@ public class Album extends BaseObservable {
     public Album() {
     }
 
-
     public String getDateModified() {
         return dateModified;
     }
@@ -52,6 +56,13 @@ public class Album extends BaseObservable {
         notifyPropertyChanged(BR.price);
     }
 
+    @BindingAdapter("android:text")
+    public static void setPrice(TextView view, double price) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        String stringPrice = df.format(price);
+        view.setText("£".concat(stringPrice));
+    }
+
     @Bindable
     public int getStock() {
         return stock;
@@ -60,6 +71,11 @@ public class Album extends BaseObservable {
     public void setStock(int stock) {
         this.stock = stock;
         notifyPropertyChanged(BR.stock);
+    }
+
+    @BindingAdapter("android:text")
+    public static void setStock(TextView view, int stock) {
+        view.setText(String.valueOf(stock));
     }
 
     @Bindable
