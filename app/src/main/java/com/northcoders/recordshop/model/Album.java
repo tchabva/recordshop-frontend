@@ -3,6 +3,8 @@ package com.northcoders.recordshop.model;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
+import com.northcoders.recordshop.BR;
+
 import java.sql.Date;
 
 public class Album extends BaseObservable {
@@ -47,6 +49,7 @@ public class Album extends BaseObservable {
 
     public void setPrice(double price) {
         this.price = price;
+        notifyPropertyChanged(BR.price);
     }
 
     @Bindable
@@ -56,6 +59,7 @@ public class Album extends BaseObservable {
 
     public void setStock(int stock) {
         this.stock = stock;
+        notifyPropertyChanged(BR.stock);
     }
 
     @Bindable
@@ -65,6 +69,7 @@ public class Album extends BaseObservable {
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
+        notifyPropertyChanged(BR.releaseDate);
     }
 
     @Bindable
@@ -74,6 +79,7 @@ public class Album extends BaseObservable {
 
     public void setGenre(String genre) {
         this.genre = genre;
+        notifyPropertyChanged(BR.genre);
     }
 
     @Bindable
@@ -83,6 +89,7 @@ public class Album extends BaseObservable {
 
     public void setArtist(String artist) {
         this.artist = artist;
+        notifyPropertyChanged(BR.artist);
     }
 
     @Bindable
@@ -92,6 +99,7 @@ public class Album extends BaseObservable {
 
     public void setTitle(String title) {
         this.title = title;
+        notifyPropertyChanged(BR.title);
     }
 
     @Bindable
@@ -101,5 +109,6 @@ public class Album extends BaseObservable {
 
     public void setId(long id) {
         this.id = id;
+        notifyPropertyChanged(BR.id);
     }
 }
