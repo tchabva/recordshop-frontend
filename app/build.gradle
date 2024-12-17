@@ -49,4 +49,7 @@ dependencies {
 
     // Card view
     implementation libs.cardview
+
+    // Glide
+    implementation libs.glide
 }
