@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="album"
+            type="com.northcoders.recordshop.model.Album" />
+    </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,6 +47,7 @@
                     android:id="@+id/album_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@{album.title}"
                     tools:text="An Album Title"
                     android:textSize="24sp"
                     android:fontFamily="sans-serif-condensed"
@@ -50,6 +57,7 @@
                     android:id="@+id/artist_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@{album.artist}"
                     tools:text="Artist Name"
                     android:fontFamily="sans-serif-condensed"
                     android:textSize="16sp"/>
@@ -72,9 +80,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
+                        android:text="@{String.valueOf(album.releaseDate)}"
                         tools:text="2020-20-20"
                         android:fontFamily="sans-serif-condensed"
-
                         android:textSize="12sp"/>
                 </TableRow>
 
@@ -96,10 +104,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
+                        android:text="@{String.valueOf(album.price)}"
                         tools:text="£XX.XX"
                         android:fontFamily="sans-serif-condensed"
                         android:textSize="12sp"/>
-
                 </TableRow>
 
                 <TableRow
@@ -121,6 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:fontFamily="sans-serif-condensed"
+                        android:text="@{String.valueOf(album.stock)}"
                         tools:text="XX"
                         android:textSize="12sp"/>
                 </TableRow>
