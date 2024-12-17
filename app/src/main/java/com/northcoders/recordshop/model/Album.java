@@ -5,8 +5,6 @@ import androidx.databinding.Bindable;
 
 import com.northcoders.recordshop.BR;
 
-import java.sql.Date;
-
 public class Album extends BaseObservable {
     private long id;
     private String title;
@@ -15,10 +13,11 @@ public class Album extends BaseObservable {
     private String releaseDate;
     private int stock;
     private double price;
+    private String artworkUrl;
     private String dateCreated;
     private String dateModified;
 
-    public Album(long id, String title, String artist, String genre, String releaseDate, int stock, double price, String dateCreated, String dateModified) {
+    public Album(long id, String title, String artist, String genre, String releaseDate, int stock, double price, String artworkUrl, String dateCreated, String dateModified) {
         this.id = id;
         this.title = title;
         this.artist = artist;
@@ -26,6 +25,7 @@ public class Album extends BaseObservable {
         this.releaseDate = releaseDate;
         this.stock = stock;
         this.price = price;
+        this.artworkUrl = artworkUrl;
         this.dateCreated = dateCreated;
         this.dateModified = dateModified;
     }
@@ -105,6 +105,10 @@ public class Album extends BaseObservable {
     @Bindable
     public long getId() {
         return id;
+    }
+
+    public String getArtworkUrl() {
+        return artworkUrl;
     }
 
     public void setId(long id) {
