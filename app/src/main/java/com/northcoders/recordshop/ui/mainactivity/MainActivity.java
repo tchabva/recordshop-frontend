@@ -1,34 +1,63 @@
 package com.northcoders.recordshop.ui.mainactivity;
 
-import android.app.Application;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.northcoders.recordshop.R;
-import com.northcoders.recordshop.model.AlbumRepository;
+import com.northcoders.recordshop.databinding.ActivityMainBinding;
+import com.northcoders.recordshop.model.Album;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private ArrayList<Album> albumList;
+    private AlbumAdapter albumAdapter;
+    private MainActivityViewModel viewModel;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        // activity_main Binding
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        // initialising the ViewModel
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+        getAllInStockAlbums();
+    }
+
+    private void getAllInStockAlbums() {
+        // Observe the changes in the album list
+        viewModel.getAllInStockAlbums().observe(this, new Observer<List<Album>>() {
+            @Override
+            public void onChanged(List<Album> albumsFromLiveData) {
+                albumList = (ArrayList<Album>) albumsFromLiveData;
+
+                displayAlbumsInRecyclerView();
+            }
         });
+    }
 
-        Application application = new Application();
-
-        AlbumRepository albumRepository = new AlbumRepository(application);
-
-        albumRepository.getMutableLiveData();
+    // Sets up the RecyclerView
+    private void displayAlbumsInRecyclerView() {
+        recyclerView = binding.recyclerView;
+        albumAdapter = new AlbumAdapter(albumList);
+        recyclerView.setAdapter(albumAdapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        albumAdapter.notifyDataSetChanged();
     }
 }
