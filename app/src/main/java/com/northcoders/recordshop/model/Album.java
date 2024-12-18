@@ -134,8 +134,14 @@ public class Album extends BaseObservable {
         return id;
     }
 
+    @Bindable
     public String getArtworkUrl() {
         return artworkUrl;
+    }
+
+    public void setArtworkUrl(String artworkUrl) {
+        this.artworkUrl = artworkUrl;
+        notifyPropertyChanged(BR.artworkUrl);
     }
 
     public void setId(long id) {
