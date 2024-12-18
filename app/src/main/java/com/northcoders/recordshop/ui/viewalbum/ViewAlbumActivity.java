@@ -1,4 +1,4 @@
-package com.northcoders.recordshop.ui.addalbum;
+package com.northcoders.recordshop.ui.viewalbum;
 
 import android.os.Bundle;
 
@@ -7,13 +7,13 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.northcoders.recordshop.R;
-import com.northcoders.recordshop.databinding.ActivityAddNewAlbumBinding;
+import com.northcoders.recordshop.databinding.ActivityViewAlbumBinding;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 
-public class AddNewAlbumActivity extends AppCompatActivity {
+public class ViewAlbumActivity extends AppCompatActivity {
 
-    private ActivityAddNewAlbumBinding binding;
+    private ActivityViewAlbumBinding binding;
     private AddAlbumClickHandler handler;
     private Album album;
 
@@ -21,13 +21,13 @@ public class AddNewAlbumActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_album);
+        setContentView(R.layout.activity_view_album);
 
         Album passedAlbum = (Album) getIntent().getExtras().getSerializable("album");
 
         album  = passedAlbum == null? new Album() : passedAlbum;
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_add_new_album);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_view_album);
 
         MainActivityViewModel viewModel = new ViewModelProvider(this)
                 .get(MainActivityViewModel.class);
