@@ -1,5 +1,6 @@
 package com.northcoders.recordshop.model;
 
+import android.os.Parcelable;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -10,9 +11,10 @@ import androidx.databinding.InverseBindingAdapter;
 
 import com.northcoders.recordshop.BR;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public class Album extends BaseObservable {
+public class Album extends BaseObservable implements Serializable {
     private long id;
     private String title;
     private String artist;
