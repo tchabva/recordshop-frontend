@@ -86,7 +86,7 @@ public class Album extends BaseObservable {
 
     @InverseBindingAdapter(attribute = "android:text")
     public static Integer getStock(TextView textView){
-        return Integer.valueOf(textView.getText().toString().substring(1));
+        return Integer.valueOf(textView.getText().toString());
     }
 
     @Bindable
