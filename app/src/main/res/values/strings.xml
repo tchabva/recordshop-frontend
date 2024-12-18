@@ -4,4 +4,15 @@
     <string name="release_date">Release Date:</string>
     <string name="price">Price:</string>
     <string name="stock">Stock:</string>
+    <string name="add_album">Add Album</string>
+    <string name="header_image">Header album image</string>
+    <string name="title">Title</string>
+    <string name="artist">Artist</string>
+    <string name="genre">Genre</string>
+    <string name="submit">Submit</string>
+    <string name="back_to_main_activity">Back to Main Activity</string>
+    <string name="release_date_hint">Release Date</string>
+    <string name="price_hint">Price</string>
+    <string name="stock_hint">Stock</string>
+    <string name="add_album_button">Add Album button</string>
 </resources>
