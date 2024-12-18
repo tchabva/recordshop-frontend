@@ -29,12 +29,12 @@ public class AddAlbumClickHandler {
                     context,
                     "Only optional fields can be empty",
                     Toast.LENGTH_SHORT).show();
+        }else {
+            viewModel.addAlbum(album);
+
+            Intent intent = new Intent(context, MainActivity.class);
+            context.startActivity(intent);
         }
-
-        viewModel.addAlbum(album);
-
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
     }
 
     public void onBackButtonClicked(View view){
