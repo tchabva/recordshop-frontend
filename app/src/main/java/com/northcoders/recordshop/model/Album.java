@@ -5,6 +5,7 @@ import android.widget.TextView;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
+import androidx.databinding.InverseBindingAdapter;
 
 import com.northcoders.recordshop.BR;
 
@@ -57,10 +58,15 @@ public class Album extends BaseObservable {
     }
 
     @BindingAdapter("android:text")
-    public static void setPrice(TextView view, double price) {
+    public static void setPrice(TextView textView, Double price) {
         DecimalFormat df = new DecimalFormat("0.00");
         String stringPrice = df.format(price);
-        view.setText("£".concat(stringPrice));
+        textView.setText("£".concat(stringPrice));
+    }
+
+    @InverseBindingAdapter(attribute = "android:text")
+    public static Double getPrice(TextView textView){
+        return Double.valueOf(textView.getText().toString().substring(1));
     }
 
     @Bindable
@@ -74,8 +80,13 @@ public class Album extends BaseObservable {
     }
 
     @BindingAdapter("android:text")
-    public static void setStock(TextView view, int stock) {
-        view.setText(String.valueOf(stock));
+    public static void setStock(TextView textView, Integer stock) {
+        textView.setText(String.valueOf(stock));
+    }
+
+    @InverseBindingAdapter(attribute = "android:text")
+    public static Integer getStock(TextView textView){
+        return Integer.valueOf(textView.getText().toString().substring(1));
     }
 
     @Bindable
