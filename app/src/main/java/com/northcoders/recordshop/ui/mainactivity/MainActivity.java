@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private AlbumAdapter albumAdapter;
     private MainActivityViewModel viewModel;
     private ActivityMainBinding binding;
+    private MainActivityClickHandler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
         // initialising the ViewModel
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+        handler = new MainActivityClickHandler(this);
+
+        binding.setClickHandler(handler);
 
         getAllInStockAlbums();
     }
