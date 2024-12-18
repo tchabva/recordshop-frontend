@@ -20,10 +20,12 @@ import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
 
-    List<Album> albumList;
+    private List<Album> albumList;
+    private MainActivityClickHandler clickHandler;
 
-    public AlbumAdapter(List<Album> albumList) {
+    public AlbumAdapter(List<Album> albumList, MainActivityClickHandler clickHandler) {
         this.albumList = albumList;
+        this.clickHandler = clickHandler;
     }
 
     @NonNull
@@ -51,6 +53,11 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .error(R.drawable.holder_album_artwork)
                 .into(holder.imageView);
+
+        holder.albumItemBinding.albumItemCard.setOnClickListener( view -> {
+            holder.albumItemBinding.albumItemCard.setCardElevation(0);
+            clickHandler.onAddAlbumFABClicked(album);
+        });
     }
 
 
