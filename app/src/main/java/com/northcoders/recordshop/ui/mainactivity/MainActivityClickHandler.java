@@ -12,7 +12,7 @@ public class MainActivityClickHandler {
         this.context = context;
     }
 
-    public void onBackButtonClicked(View view){
+    public void onAddAlbumFABClicked(View view){
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
