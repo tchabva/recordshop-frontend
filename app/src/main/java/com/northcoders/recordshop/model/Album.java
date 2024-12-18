@@ -48,11 +48,11 @@ public class Album extends BaseObservable {
     }
 
     @Bindable
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
         notifyPropertyChanged(BR.price);
     }
@@ -70,11 +70,11 @@ public class Album extends BaseObservable {
     }
 
     @Bindable
-    public int getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
         notifyPropertyChanged(BR.stock);
     }
