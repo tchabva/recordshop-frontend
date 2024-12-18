@@ -11,14 +11,14 @@
             type="com.northcoders.recordshop.model.Album" />
         <variable
             name="clickHandler"
-            type="com.northcoders.recordshop.ui.addalbum.AddAlbumClickHandler" />
+            type="com.northcoders.recordshop.ui.viewalbum.AddAlbumClickHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.addalbum.AddNewAlbumActivity">
+        tools:context=".ui.viewalbum.ViewAlbumActivity">
 
         <TableRow
             android:id="@+id/header_row"
