@@ -17,12 +17,15 @@ public class AddNewAlbumActivity extends AppCompatActivity {
     private AddAlbumClickHandler handler;
     private Album album;
 
+    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_album);
 
-        album = new Album();
+        Album passedAlbum = (Album) getIntent().getExtras().getSerializable("album");
+
+        album  = passedAlbum == null? new Album() : passedAlbum;
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_new_album);
 
