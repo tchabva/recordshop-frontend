@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     // Sets up the RecyclerView
     private void displayAlbumsInRecyclerView() {
         recyclerView = binding.recyclerView;
-        albumAdapter = new AlbumAdapter(albumList);
+        albumAdapter = new AlbumAdapter(albumList, handler);
         recyclerView.setAdapter(albumAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

@@ -1,8 +1,11 @@
 package com.northcoders.recordshop.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
@@ -11,8 +14,9 @@ import androidx.databinding.InverseBindingAdapter;
 import com.northcoders.recordshop.BR;
 
 import java.text.DecimalFormat;
+import java.util.Locale;
 
-public class Album extends BaseObservable {
+public class Album extends BaseObservable implements Parcelable {
     private long id;
     private String title;
     private String artist;
@@ -37,8 +41,44 @@ public class Album extends BaseObservable {
         this.dateModified = dateModified;
     }
 
+    public Album(long id, String title, String artist, String genre, String releaseDate, int stock, double price, String artworkUrl) {
+        this.id = id;
+        this.title = title;
+        this.artist = artist;
+        this.genre = genre;
+        this.releaseDate = releaseDate;
+        this.stock = stock;
+        this.price = price;
+        this.artworkUrl = artworkUrl;
+    }
+
     public Album() {
     }
+
+    protected Album(Parcel in) {
+        id = in.readLong();
+        title = in.readString();
+        artist = in.readString();
+        genre = in.readString();
+        releaseDate = in.readString();
+        stock = in.readInt();
+        price = in.readDouble();
+        artworkUrl = in.readString();
+        dateCreated = in.readString();
+        dateModified = in.readString();
+    }
+
+    public static final Creator<Album> CREATOR = new Creator<Album>() {
+        @Override
+        public Album createFromParcel(Parcel in) {
+            return new Album(in);
+        }
+
+        @Override
+        public Album[] newArray(int size) {
+            return new Album[size];
+        }
+    };
 
     public String getDateModified() {
         return dateModified;
@@ -68,7 +108,7 @@ public class Album extends BaseObservable {
     @BindingAdapter("android:text")
     public static void setPriceEditText(EditText editText, Double price) {
         if (price != null) {
-            String formattedPrice = String.format("%.2f", price);
+            String formattedPrice = String.format(Locale.UK, "%.2f", price);
             if(!editText.getText().toString().equals(formattedPrice)){
 
                 editText.setText(formattedPrice);
@@ -178,5 +218,24 @@ public class Album extends BaseObservable {
     public void setId(long id) {
         this.id = id;
         notifyPropertyChanged(BR.id);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeLong(id);
+        parcel.writeString(title);
+        parcel.writeString(artist);
+        parcel.writeString(genre);
+        parcel.writeString(releaseDate);
+        parcel.writeInt(stock);
+        parcel.writeDouble(price);
+        parcel.writeString(artworkUrl);
+        parcel.writeString(dateCreated);
+        parcel.writeString(dateModified);
     }
 }
