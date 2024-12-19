@@ -40,10 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding.setClickHandler(handler);
 
-        binding.addBookFab.setOnClickListener(view -> {
-            handler.onAddAlbumFABClicked(null);
-        });
-
         getAllInStockAlbums();
     }
 

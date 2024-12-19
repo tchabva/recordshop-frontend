@@ -56,7 +56,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
         holder.albumItemBinding.albumItemCard.setOnClickListener( view -> {
             holder.albumItemBinding.albumItemCard.setCardElevation(0);
-            clickHandler.onAddAlbumFABClicked(album); //Refactor
+            clickHandler.onAlbumItemClicked(album);
         });
     }
 

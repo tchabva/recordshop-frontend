@@ -23,7 +23,7 @@ public class ViewAlbumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_album);
 
-        Album passedAlbum = (Album) getIntent().getExtras().getSerializable("album");
+        Album passedAlbum = getIntent().getParcelableExtra("album");
 
         album  = passedAlbum == null? new Album() : passedAlbum;
 
