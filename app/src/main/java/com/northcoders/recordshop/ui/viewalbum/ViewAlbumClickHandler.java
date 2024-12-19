@@ -1,11 +1,14 @@
 package com.northcoders.recordshop.ui.viewalbum;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.ui.mainactivity.MainActivity;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
@@ -99,11 +102,30 @@ public class ViewAlbumClickHandler {
     }
 
     public void onDeleteButtonClicked(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        // Add the buttons.
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                viewModel.deleteAlbum(album.getId());
 
-        viewModel.deleteAlbum(album.getId());
+                Intent intent = new Intent(context, MainActivity.class);
+                context.startActivity(intent);
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancels the dialog.
+            }
+        });
+        // Set other dialog properties.
+        builder.setMessage(R.string.dialog_delete_message)
+                .setTitle(R.string.dialig_delete_album_title);
 
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
+        // Create the AlertDialog.
+        AlertDialog dialog = builder.create();
+        //Display the AlertDialog
+        dialog.show();
+
     }
 
     public void onBackButtonClicked(View view){
