@@ -1,6 +1,7 @@
 package com.northcoders.recordshop.ui.viewalbum;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -28,6 +29,12 @@ public class ViewAlbumActivity extends AppCompatActivity {
         album  = passedAlbum == null? new Album() : passedAlbum;
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_view_album);
+
+        if (passedAlbum != null){
+            binding.headerTextView.setText(R.string.edit_album);
+            binding.submitButton.setText(R.string.update);
+            binding.deleteButton.setVisibility(View.VISIBLE);
+        }
 
         MainActivityViewModel viewModel = new ViewModelProvider(this)
                 .get(MainActivityViewModel.class);

@@ -39,6 +39,7 @@
                 android:contentDescription="@string/header_image"/>
 
             <TextView
+                android:id="@+id/header_text_view"
                 android:layout_height="match_parent"
                 android:layout_width="wrap_content"
                 android:text="@string/add_album"
@@ -167,14 +168,30 @@
 
             <Button
                 android:id="@+id/submit_button"
-                android:layout_width="wrap_content"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:onClick="@{clickHandler::onSubmitButtonClicked}"
-                android:text="@string/submit"
+                android:text="@string/add"
+                android:textSize="32sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/enter_stock" />
+
+            <Button
+                android:id="@+id/delete_button"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:onClick="@{clickHandler::onSubmitButtonClicked}"
+                android:text="@string/delete"
+                android:textSize="32sp"
+                android:backgroundTint="@android:color/holo_red_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/submit_button"
+                android:visibility="gone"
+                tools:visibility="visible"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/back_fab"
