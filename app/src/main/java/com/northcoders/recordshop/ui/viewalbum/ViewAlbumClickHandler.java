@@ -9,13 +9,13 @@ import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.ui.mainactivity.MainActivity;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 
-public class AddAlbumClickHandler {
+public class ViewAlbumClickHandler {
 
     private Album album;
     private Context context;
     private MainActivityViewModel viewModel;
 
-    public AddAlbumClickHandler(Album album, Context context, MainActivityViewModel viewModel) {
+    public ViewAlbumClickHandler(Album album, Context context, MainActivityViewModel viewModel) {
         this.album = album;
         this.context = context;
         this.viewModel = viewModel;

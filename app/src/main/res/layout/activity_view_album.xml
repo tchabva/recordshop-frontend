@@ -11,7 +11,7 @@
             type="com.northcoders.recordshop.model.Album" />
         <variable
             name="clickHandler"
-            type="com.northcoders.recordshop.ui.viewalbum.AddAlbumClickHandler" />
+            type="com.northcoders.recordshop.ui.viewalbum.ViewAlbumClickHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

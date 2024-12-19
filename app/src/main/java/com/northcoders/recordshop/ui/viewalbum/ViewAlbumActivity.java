@@ -15,7 +15,7 @@ import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 public class ViewAlbumActivity extends AppCompatActivity {
 
     private ActivityViewAlbumBinding binding;
-    private AddAlbumClickHandler handler;
+    private ViewAlbumClickHandler handler;
     private Album album;
 
     //
@@ -39,7 +39,7 @@ public class ViewAlbumActivity extends AppCompatActivity {
         MainActivityViewModel viewModel = new ViewModelProvider(this)
                 .get(MainActivityViewModel.class);
 
-        handler = new AddAlbumClickHandler(album, this, viewModel);
+        handler = new ViewAlbumClickHandler(album, this, viewModel);
 
         binding.setAlbum(album);
 
