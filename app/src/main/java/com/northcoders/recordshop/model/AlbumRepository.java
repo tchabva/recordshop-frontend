@@ -64,6 +64,56 @@ public class AlbumRepository {
                         application.getApplicationContext(),
                         "Unable to add Album to database",
                         Toast.LENGTH_SHORT).show();
+                Log.e("POST failure", t.getMessage());
+            }
+        });
+    }
+
+    public void updateAlbum(long id, Album album){
+
+        Call<Album> call = albumApiService.updateAlbum(id, album);
+
+        call.enqueue(new Callback<Album>() {
+            @Override
+            public void onResponse(Call<Album> call, Response<Album> response) {
+                Toast.makeText(
+                        application.getApplicationContext(),
+                        "Album updated",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Album> call, Throwable t) {
+                Toast.makeText(
+                        application.getApplicationContext(),
+                        "Unable to update book",
+                        Toast.LENGTH_SHORT).show();
+                Log.e("PUT request", t.getMessage());
+            }
+        });
+    }
+
+    public void deleteAlbum(long id){
+
+        Call<String> call = albumApiService.deleteAlbum(id);
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(
+                        application.getApplicationContext(),
+                        response.body(),
+                        Toast.LENGTH_SHORT).show();
+                Log.i("DELETE Request", response.body());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(
+                        application.getApplicationContext(),
+                        "Unable to delete book",
+                        Toast.LENGTH_SHORT).show();
+                Log.e("DELETE request", t.getMessage());
             }
         });
     }
