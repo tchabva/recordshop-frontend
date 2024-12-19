@@ -17,10 +17,10 @@ import java.util.Objects;
 
 public class ViewAlbumClickHandler {
 
-    private Album album;
-    private Context context;
-    private MainActivityViewModel viewModel;
-    private ViewScreenState state;
+    private final Album album;
+    private final Context context;
+    private final MainActivityViewModel viewModel;
+    private final ViewScreenState state;
 
     public ViewAlbumClickHandler(Album album, Context context, MainActivityViewModel viewModel, ViewScreenState state) {
         this.album = album;
@@ -102,12 +102,23 @@ public class ViewAlbumClickHandler {
     }
 
     public void onDeleteButtonClicked(View view){
+        deleteAlbumAlertDialog().show();
+    }
+
+    public void onBackButtonClicked(View view){
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
+
+    private AlertDialog deleteAlbumAlertDialog(){
+        // 1. Instantiate an AlertDialog.Builder with its constructor.
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         // Add the buttons.
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                viewModel.deleteAlbum(album.getId());
+                viewModel.deleteAlbum(album.getId()); // Delete the album
 
+                // Return back to the MainActivity
                 Intent intent = new Intent(context, MainActivity.class);
                 context.startActivity(intent);
             }
@@ -122,14 +133,6 @@ public class ViewAlbumClickHandler {
                 .setTitle(R.string.dialig_delete_album_title);
 
         // Create the AlertDialog.
-        AlertDialog dialog = builder.create();
-        //Display the AlertDialog
-        dialog.show();
-
-    }
-
-    public void onBackButtonClicked(View view){
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
+        return builder.create();
     }
 }
