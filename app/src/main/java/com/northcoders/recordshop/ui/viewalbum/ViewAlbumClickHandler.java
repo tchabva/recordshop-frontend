@@ -26,19 +26,6 @@ public class ViewAlbumClickHandler {
 
     public void onSubmitButtonClicked(View view){
 
-
-//        if(album.getTitle() == null || album.getArtist() == null || album.getGenre() == null ||
-//        album.getReleaseDate() == null ||  album.getPrice() == null || album.getStock() == null ){
-//            Toast.makeText(
-//                    context,
-//                    "Only optional fields can be empty",
-//                    Toast.LENGTH_SHORT).show();
-//        }else {
-//            viewModel.addAlbum(album);
-//
-//            Intent intent = new Intent(context, MainActivity.class);
-//            context.startActivity(intent);
-//        }
         switch (state) {
             case ADD_ALBUM:
                 onAddButtonClicked();
@@ -50,9 +37,19 @@ public class ViewAlbumClickHandler {
     }
 
     private void onAddButtonClicked(){
+        if(album.getTitle() == null || album.getArtist() == null || album.getGenre() == null ||
+                album.getReleaseDate() == null ||  album.getPrice() == null || album.getStock() == null ){
+            Toast.makeText(
+                    context,
+                    "Only optional fields can be empty",
+                    Toast.LENGTH_SHORT).show();
+        }else {
+            viewModel.addAlbum(album);
 
+            Intent intent = new Intent(context, MainActivity.class);
+            context.startActivity(intent);
+        }
         Log.i("ADD Button", "Add Button Clicked");
-
     }
 
     private void onUpdateButtonClicked(){
