@@ -37,6 +37,14 @@ public class AddAlbumClickHandler {
         }
     }
 
+    public void onDeleteButtonClicked(View view){
+
+        viewModel.deleteAlbum(album.getId());
+
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
+
     public void onBackButtonClicked(View view){
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);

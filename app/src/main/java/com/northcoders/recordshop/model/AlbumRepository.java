@@ -76,6 +76,7 @@ public class AlbumRepository {
         call.enqueue(new Callback<Album>() {
             @Override
             public void onResponse(Call<Album> call, Response<Album> response) {
+
                 Toast.makeText(
                         application.getApplicationContext(),
                         "Album updated",
@@ -95,25 +96,27 @@ public class AlbumRepository {
 
     public void deleteAlbum(long id){
 
-        Call<String> call = albumApiService.deleteAlbum(id);
+        Call<Void> call = albumApiService.deleteAlbum(id);
 
-        call.enqueue(new Callback<String>() {
+
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(
-                        application.getApplicationContext(),
-                        response.body(),
-                        Toast.LENGTH_SHORT).show();
-                Log.i("DELETE Request", response.body());
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+                    Toast.makeText(
+                            application.getApplicationContext(),
+                            "Album Deleted",
+                            Toast.LENGTH_SHORT).show();
+                    Log.i("DELETE Request", "Album deleted");
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(
                         application.getApplicationContext(),
                         "Unable to delete book",
                         Toast.LENGTH_SHORT).show();
-                Log.e("DELETE request", t.getMessage());
+                Log.e("DELETE onFail", t.getMessage());
             }
         });
     }

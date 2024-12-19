@@ -183,7 +183,7 @@
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:onClick="@{clickHandler::onSubmitButtonClicked}"
+                android:onClick="@{clickHandler::onDeleteButtonClicked}"
                 android:text="@string/delete"
                 android:textSize="32sp"
                 android:backgroundTint="@android:color/holo_red_light"
