@@ -1,11 +1,14 @@
 package com.northcoders.recordshop.ui.viewalbum;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.ui.mainactivity.MainActivity;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
@@ -14,10 +17,10 @@ import java.util.Objects;
 
 public class ViewAlbumClickHandler {
 
-    private Album album;
-    private Context context;
-    private MainActivityViewModel viewModel;
-    private ViewScreenState state;
+    private final Album album;
+    private final Context context;
+    private final MainActivityViewModel viewModel;
+    private final ViewScreenState state;
 
     public ViewAlbumClickHandler(Album album, Context context, MainActivityViewModel viewModel, ViewScreenState state) {
         this.album = album;
@@ -99,15 +102,37 @@ public class ViewAlbumClickHandler {
     }
 
     public void onDeleteButtonClicked(View view){
-
-        viewModel.deleteAlbum(album.getId());
-
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
+        deleteAlbumAlertDialog().show();
     }
 
     public void onBackButtonClicked(View view){
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
+    }
+
+    private AlertDialog deleteAlbumAlertDialog(){
+        // 1. Instantiate an AlertDialog.Builder with its constructor.
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        // Add the buttons.
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                viewModel.deleteAlbum(album.getId()); // Delete the album
+
+                // Return back to the MainActivity
+                Intent intent = new Intent(context, MainActivity.class);
+                context.startActivity(intent);
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancels the dialog.
+            }
+        });
+        // Set other dialog properties.
+        builder.setMessage(R.string.dialog_delete_message)
+                .setTitle(R.string.dialig_delete_album_title);
+
+        // Create the AlertDialog.
+        return builder.create();
     }
 }
