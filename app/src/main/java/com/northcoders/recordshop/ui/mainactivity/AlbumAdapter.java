@@ -1,9 +1,6 @@
 package com.northcoders.recordshop.ui.mainactivity;
 
-import android.app.Application;
-import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -20,8 +17,8 @@ import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
 
-    private List<Album> albumList;
-    private MainActivityClickHandler clickHandler;
+    private final List<Album> albumList;
+    private final MainActivityClickHandler clickHandler;
 
     public AlbumAdapter(List<Album> albumList, MainActivityClickHandler clickHandler) {
         this.albumList = albumList;
@@ -68,8 +65,8 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
     public static class AlbumViewHolder extends RecyclerView.ViewHolder{
 
-        private AlbumItemBinding albumItemBinding;
-        private ImageView imageView;
+        private final AlbumItemBinding albumItemBinding;
+        private final ImageView imageView;
 
         public AlbumViewHolder(AlbumItemBinding albumItemBinding) {
             super(albumItemBinding.getRoot());

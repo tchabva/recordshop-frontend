@@ -9,7 +9,8 @@ import com.northcoders.recordshop.ui.viewalbum.ViewAlbumActivity;
 
 public class MainActivityClickHandler {
 
-    private Context context;
+    private final Context context;
+    private final static String ALBUM_KEY = "album";
 
     public MainActivityClickHandler(Context context) {
         this.context = context;
@@ -19,10 +20,9 @@ public class MainActivityClickHandler {
 
         Intent intent = new Intent(context, ViewAlbumActivity.class);
 
-        intent.putExtra("album", album);
+        intent.putExtra(ALBUM_KEY, album);
 
         context.startActivity(intent);
-
     }
 
     public void onAddAlbumFABClicked(View view){
