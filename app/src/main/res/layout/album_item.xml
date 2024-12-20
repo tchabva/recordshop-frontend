@@ -50,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{album.title}"
                     tools:text="An Album Title"
+                    android:textColor="@color/black"
                     android:textSize="24sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="bold"/>
@@ -60,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{album.artist}"
                     tools:text="Artist Name"
+                    android:textColor="@color/black"
                     android:fontFamily="sans-serif-condensed"
                     android:textSize="16sp"/>
 
@@ -69,6 +71,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{album.genre}"
                     tools:text="Album Genre"
+                    android:textColor="@color/black"
                     android:fontFamily="sans-serif-condensed"
                     android:textSize="12sp"/>
 
@@ -82,6 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/release_date"
+                        android:textColor="@color/black"
                         android:fontFamily="sans-serif-condensed"
                         android:textSize="12sp"/>
 
@@ -92,6 +96,7 @@
                         android:layout_marginStart="4dp"
                         android:text="@{album.releaseDate}"
                         tools:text="2020-20-20"
+                        android:textColor="@color/black"
                         android:fontFamily="sans-serif-condensed"
                         android:textSize="12sp"/>
                 </TableRow>
@@ -106,6 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/price"
+                        android:textColor="@color/black"
                         android:fontFamily="sans-serif-condensed"
                         android:textSize="12sp"/>
 
@@ -116,6 +122,7 @@
                         android:layout_marginStart="4dp"
                         android:text="@{album.price}"
                         tools:text="£XX.XX"
+                        android:textColor="@color/black"
                         android:fontFamily="sans-serif-condensed"
                         android:textSize="12sp"/>
                 </TableRow>
@@ -131,6 +138,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-condensed"
                         android:text="@string/stock"
+                        android:textColor="@color/black"
                         android:textSize="12sp"/>
 
                     <TextView
@@ -141,6 +149,7 @@
                         android:fontFamily="sans-serif-condensed"
                         android:text="@{album.stock}"
                         tools:text="XX"
+                        android:textColor="@color/black"
                         android:textSize="12sp"/>
                 </TableRow>
             </LinearLayout>
