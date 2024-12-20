@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         artistSearchView.clearFocus();
 
         setSearchView();
+
+        viewModel.getAllAlbumsByArtistName("Taylor");
     }
 
     private void setSearchView(){

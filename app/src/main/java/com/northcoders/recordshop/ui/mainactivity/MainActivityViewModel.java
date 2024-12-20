@@ -35,4 +35,8 @@ public class MainActivityViewModel extends AndroidViewModel {
     public void deleteAlbum(long id){
         albumRepository.deleteAlbum(id);
     }
+
+    public LiveData<List<Album>> getAllAlbumsByArtistName(String artistName){
+        return albumRepository.getAlbumsByArtistName(artistName);
+    }
 }
