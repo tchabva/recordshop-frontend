@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                titleFilterList(newText);
+                filterList(newText, artistSearchView.getQuery().toString());
                 return true;
             }
         });
@@ -79,45 +79,30 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                artistFilterList(newText);
+                filterList(titleSearchView.getQuery().toString(),newText);
                 return true;
             }
         });
 
     }
 
-    private void artistFilterList(String newText) {
+
+    private void filterList(String titleText, String artistText) {
         filteredAlbumList = new ArrayList<>();
 
-        for(Album album : albumList){
-            // Filter conditions
-            if(album.getArtist().toLowerCase().contains(newText.toLowerCase())){
+        for (Album album : albumList) {
+            boolean matchesTitle = album.getTitle().toLowerCase().contains(titleText.toLowerCase());
+            boolean matchesArtist = album.getArtist().toLowerCase().contains(artistText.toLowerCase());
+
+            if (matchesTitle && matchesArtist) {
                 filteredAlbumList.add(album);
             }
         }
 
-        if (filteredAlbumList.isEmpty()){
-            Toast.makeText(this, "No Artists found!", Toast.LENGTH_SHORT).show();
-            albumAdapter.setFilteredList(filteredAlbumList);
-        }else {
-            albumAdapter.setFilteredList(filteredAlbumList);
-        }
-    }
-
-    private void titleFilterList(String newText) {
-        filteredAlbumList = new ArrayList<>();
-
-        for(Album album : albumList){
-            // Filter conditions
-            if(album.getTitle().toLowerCase().contains(newText.toLowerCase())){
-                filteredAlbumList.add(album);
-            }
-        }
-
-        if (filteredAlbumList.isEmpty()){
+        if (filteredAlbumList.isEmpty()) {
             Toast.makeText(this, "No albums found!", Toast.LENGTH_SHORT).show();
             albumAdapter.setFilteredList(filteredAlbumList);
-        }else {
+        } else {
             albumAdapter.setFilteredList(filteredAlbumList);
         }
     }
