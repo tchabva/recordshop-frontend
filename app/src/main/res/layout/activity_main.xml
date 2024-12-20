@@ -21,11 +21,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:id="@+id/search_view"
+            android:id="@+id/album_title_search_view"
             android:background="@drawable/search_view_bg"
             app:iconifiedByDefault="false"
-            app:queryHint="@string/search_view_query_hint"
+            app:queryHint="@string/title_search_view_query_hint"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:id="@+id/album_artist_search_view"
+            android:background="@drawable/search_view_bg"
+            app:iconifiedByDefault="false"
+            app:queryHint="@string/artist_search_view_query_hint"
+            app:layout_constraintTop_toBottomOf="@id/album_title_search_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
@@ -35,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/search_view"
+            app:layout_constraintTop_toBottomOf="@id/album_artist_search_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

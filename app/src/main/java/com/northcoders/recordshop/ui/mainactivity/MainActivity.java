@@ -26,8 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private MainActivityViewModel viewModel;
     private ActivityMainBinding binding;
     private MainActivityClickHandler handler;
-    private SearchView searchView;
+    private SearchView titleSearchView;
     private ArrayList<Album> filteredAlbumList;
+    private SearchView artistSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +47,15 @@ public class MainActivity extends AppCompatActivity {
 
         getAllInStockAlbums();
 
-        searchView = binding.searchView;
-        searchView.clearFocus();
+        titleSearchView = binding.albumTitleSearchView;
+        titleSearchView.clearFocus();
 
         setSearchView();
-    }
 
+        artistSearchView = binding.albumArtistSearchView;
+        artistSearchView.clearFocus();
 
-    private void setSearchView(){
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        artistSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -62,13 +63,46 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filterList(newText);
+                artistFilterList(newText);
                 return true;
             }
         });
     }
 
-    private void filterList(String newText) {
+    private void setSearchView(){
+        titleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                titleFilterList(newText);
+                return true;
+            }
+        });
+    }
+
+    private void artistFilterList(String newText) {
+        filteredAlbumList = new ArrayList<>();
+
+        for(Album album : albumList){
+            // Filter conditions
+            if(album.getArtist().toLowerCase().contains(newText.toLowerCase())){
+                filteredAlbumList.add(album);
+            }
+        }
+
+        if (filteredAlbumList.isEmpty()){
+            Toast.makeText(this, "No Artists found!", Toast.LENGTH_SHORT).show();
+            albumAdapter.setFilteredList(filteredAlbumList);
+        }else {
+            albumAdapter.setFilteredList(filteredAlbumList);
+        }
+    }
+
+    private void titleFilterList(String newText) {
         filteredAlbumList = new ArrayList<>();
 
         for(Album album : albumList){
