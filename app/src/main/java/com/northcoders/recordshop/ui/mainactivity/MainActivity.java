@@ -49,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
         searchView = binding.searchView;
         searchView.clearFocus();
 
+        setSearchView();
+    }
+
+
+    private void setSearchView(){
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
