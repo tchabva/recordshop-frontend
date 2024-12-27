@@ -10,10 +10,12 @@ import android.widget.Toast;
 
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.model.ItunesResponse;
 import com.northcoders.recordshop.ui.mainactivity.MainActivity;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class ViewAlbumClickHandler {
 
@@ -61,10 +63,20 @@ public class ViewAlbumClickHandler {
                     "Fields cannot be empty",
                     Toast.LENGTH_SHORT).show();
         }else {
-            viewModel.addAlbum(newAlbum);
 
-            Intent intent = new Intent(context, MainActivity.class);
-            context.startActivity(intent);
+            String searchQuery = album.getArtist().trim().concat(" ").concat(album.getTitle());
+
+            Consumer<ItunesResponse> itunesResponseConsumer = itunesResponse -> {
+                Log.i("Itunes Response Callback", itunesResponse.getArtworkUrl100());
+                newAlbum.setArtworkUrl(itunesResponse.getArtworkUrl100());
+                viewModel.addAlbum(newAlbum);
+
+                Intent intent = new Intent(context, MainActivity.class);
+                context.startActivity(intent);
+            };
+
+            viewModel.getAlbumAtworkUrl(searchQuery, itunesResponseConsumer);
+
         }
         Log.i("ADD Button", "Add Button Clicked");
     }

@@ -11,6 +11,7 @@ import com.northcoders.recordshop.model.AlbumRepository;
 import com.northcoders.recordshop.model.ItunesResponse;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MainActivityViewModel extends AndroidViewModel {
 
@@ -41,7 +42,7 @@ public class MainActivityViewModel extends AndroidViewModel {
         return albumRepository.getAlbumsByArtistName(artistName);
     }
 
-    public ItunesResponse getAlbumAtworkUrl(String searchQuery){
-        return albumRepository.getAlbumArtworkUrl(searchQuery);
+    public void getAlbumAtworkUrl(String searchQuery, Consumer<ItunesResponse> itunesResponseConsumer){
+        albumRepository.getAlbumArtworkUrl(searchQuery, itunesResponseConsumer);
     }
 }

@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel.getAllAlbumsByArtistName("TC-EP");
 
-        ItunesResponse itunesResponse = viewModel.getAlbumAtworkUrl("Drake Take Care");
+//        ItunesResponse itunesResponse = viewModel.getAlbumAtworkUrl("TC-EP Ephemeral Emotions");
     }
 
     private void setSearchView(){

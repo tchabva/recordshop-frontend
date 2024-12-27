@@ -11,6 +11,8 @@ import com.northcoders.recordshop.model.service.ItunesApiService;
 import com.northcoders.recordshop.model.service.RetrofitInstance;
 
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -147,7 +149,7 @@ public class AlbumRepository {
         return searchQueryMutableLiveData;
     }
 
-    public ItunesResponse getAlbumArtworkUrl(String searchQuery){
+    public void getAlbumArtworkUrl(String searchQuery, Consumer<ItunesResponse> itunesResponseConsumer){
 
         Call<Results> call = itunesApiService.getAlbumArtworkUrl(searchQuery);
 
@@ -156,15 +158,16 @@ public class AlbumRepository {
             public void onResponse(Call<Results> call, Response<Results> response) {
                 Results results = response.body();
                 itunesResponse = results.getResults().get(0);
+                itunesResponseConsumer.accept(itunesResponse);
                 Log.i("Itunes API Sucess", itunesResponse.getArtworkUrl100());
             }
 
             @Override
             public void onFailure(Call<Results> call, Throwable t) {
                 Log.i("Itunes API Fail", t.getMessage());
+                itunesResponseConsumer.accept(null);
             }
         });
 
-        return itunesResponse;
     }
 }
