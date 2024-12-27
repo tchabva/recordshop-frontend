@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSearchView();
 
-        viewModel.getAllAlbumsByArtistName("Taylor");
+        viewModel.getAllAlbumsByArtistName("TC-EP");
     }
 
     private void setSearchView(){

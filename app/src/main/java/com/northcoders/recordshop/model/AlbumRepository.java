@@ -17,6 +17,8 @@ import retrofit2.Response;
 
 public class AlbumRepository {
     private MutableLiveData<List<Album>> mutableLiveData = new MutableLiveData<>();
+    // Once the search Param is fully implemented this addition variable might not be required
+    private MutableLiveData<List<Album>> searchQueryMutableLiveData = new MutableLiveData<>();
     private Application application;
     private AlbumApiService albumApiService;
 
@@ -129,7 +131,7 @@ public class AlbumRepository {
             @Override
             public void onResponse(Call<List<Album>> call, Response<List<Album>> response) {
                 List<Album> albums = response.body();
-                mutableLiveData.setValue(albums);
+                searchQueryMutableLiveData.setValue(albums);
             }
 
             @Override
@@ -138,6 +140,6 @@ public class AlbumRepository {
             }
         });
 
-        return mutableLiveData;
+        return searchQueryMutableLiveData;
     }
 }
