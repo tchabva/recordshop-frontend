@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.model.AlbumRepository;
+import com.northcoders.recordshop.model.ItunesResponse;
 
 import java.util.List;
 
@@ -38,5 +39,9 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public LiveData<List<Album>> getAllAlbumsByArtistName(String artistName){
         return albumRepository.getAlbumsByArtistName(artistName);
+    }
+
+    public ItunesResponse getAlbumAtworkUrl(String searchQuery){
+        return albumRepository.getAlbumArtworkUrl(searchQuery);
     }
 }

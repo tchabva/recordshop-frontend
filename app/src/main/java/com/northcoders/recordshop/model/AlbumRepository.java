@@ -7,6 +7,7 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 
 import com.northcoders.recordshop.model.service.AlbumApiService;
+import com.northcoders.recordshop.model.service.ItunesApiService;
 import com.northcoders.recordshop.model.service.RetrofitInstance;
 
 import java.util.List;
@@ -21,10 +22,13 @@ public class AlbumRepository {
     private MutableLiveData<List<Album>> searchQueryMutableLiveData = new MutableLiveData<>();
     private Application application;
     private AlbumApiService albumApiService;
+    private ItunesApiService itunesApiService;
+    private ItunesResponse itunesResponse;
 
     public AlbumRepository(Application application) {
         this.application = application;
         this.albumApiService = RetrofitInstance.getService();
+        this.itunesApiService = RetrofitInstance.getServiceArtwork();
     }
 
     public MutableLiveData<List<Album>> getMutableLiveData() {
@@ -141,5 +145,26 @@ public class AlbumRepository {
         });
 
         return searchQueryMutableLiveData;
+    }
+
+    public ItunesResponse getAlbumArtworkUrl(String searchQuery){
+
+        Call<Results> call = itunesApiService.getAlbumArtworkUrl(searchQuery);
+
+        call.enqueue(new Callback<Results>() {
+            @Override
+            public void onResponse(Call<Results> call, Response<Results> response) {
+                Results results = response.body();
+                itunesResponse = results.getResults().get(0);
+                Log.i("Itunes API Sucess", itunesResponse.getArtworkUrl100());
+            }
+
+            @Override
+            public void onFailure(Call<Results> call, Throwable t) {
+                Log.i("Itunes API Fail", t.getMessage());
+            }
+        });
+
+        return itunesResponse;
     }
 }
