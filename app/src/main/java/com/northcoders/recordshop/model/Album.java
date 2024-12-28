@@ -17,7 +17,7 @@ import java.text.DecimalFormat;
 import java.util.Locale;
 
 public class Album extends BaseObservable implements Parcelable {
-    private long id;
+    private Long id;
     private String title;
     private String artist;
     private String genre;
@@ -28,7 +28,7 @@ public class Album extends BaseObservable implements Parcelable {
     private String dateCreated;
     private String dateModified;
 
-    public Album(long id, String title, String artist, String genre, String releaseDate, int stock, double price, String artworkUrl, String dateCreated, String dateModified) {
+    public Album(Long id, String title, String artist, String genre, String releaseDate, int stock, double price, String artworkUrl, String dateCreated, String dateModified) {
         this.id = id;
         this.title = title;
         this.artist = artist;
@@ -41,7 +41,7 @@ public class Album extends BaseObservable implements Parcelable {
         this.dateModified = dateModified;
     }
 
-    public Album(long id, String title, String artist, String genre, String releaseDate, int stock, double price, String artworkUrl) {
+    public Album(Long id, String title, String artist, String genre, String releaseDate, int stock, double price, String artworkUrl) {
         this.id = id;
         this.title = title;
         this.artist = artist;
@@ -201,7 +201,7 @@ public class Album extends BaseObservable implements Parcelable {
     }
 
     @Bindable
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -215,7 +215,7 @@ public class Album extends BaseObservable implements Parcelable {
         notifyPropertyChanged(BR.artworkUrl);
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
         notifyPropertyChanged(BR.id);
     }

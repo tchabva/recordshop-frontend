@@ -8,8 +8,10 @@ import androidx.lifecycle.LiveData;
 
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.model.AlbumRepository;
+import com.northcoders.recordshop.model.ItunesResponse;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MainActivityViewModel extends AndroidViewModel {
 
@@ -34,5 +36,13 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public void deleteAlbum(long id){
         albumRepository.deleteAlbum(id);
+    }
+
+    public LiveData<List<Album>> getAllAlbumsByArtistName(String artistName){
+        return albumRepository.getAlbumsByArtistName(artistName);
+    }
+
+    public void getAlbumAtworkUrl(String searchQuery, Consumer<ItunesResponse> itunesResponseConsumer){
+        albumRepository.getAlbumArtworkUrl(searchQuery, itunesResponseConsumer);
     }
 }

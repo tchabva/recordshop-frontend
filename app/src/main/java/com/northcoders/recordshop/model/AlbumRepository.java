@@ -7,9 +7,12 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 
 import com.northcoders.recordshop.model.service.AlbumApiService;
+import com.northcoders.recordshop.model.service.ItunesApiService;
 import com.northcoders.recordshop.model.service.RetrofitInstance;
 
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,12 +20,17 @@ import retrofit2.Response;
 
 public class AlbumRepository {
     private MutableLiveData<List<Album>> mutableLiveData = new MutableLiveData<>();
+    // Once the search Param is fully implemented this addition variable might not be required
+    private MutableLiveData<List<Album>> searchQueryMutableLiveData = new MutableLiveData<>();
     private Application application;
     private AlbumApiService albumApiService;
+    private ItunesApiService itunesApiService;
+    private ItunesResponse itunesResponse;
 
     public AlbumRepository(Application application) {
         this.application = application;
         this.albumApiService = RetrofitInstance.getService();
+        this.itunesApiService = RetrofitInstance.getServiceArtwork();
     }
 
     public MutableLiveData<List<Album>> getMutableLiveData() {
@@ -119,5 +127,47 @@ public class AlbumRepository {
                 Log.e("DELETE onFail", t.getMessage());
             }
         });
+    }
+
+    public MutableLiveData<List<Album>> getAlbumsByArtistName(String artistName) {
+
+        Call<List<Album>> call = albumApiService.getAllAlbumsByArtist(artistName);
+
+        call.enqueue(new Callback<List<Album>>() {
+            @Override
+            public void onResponse(Call<List<Album>> call, Response<List<Album>> response) {
+                List<Album> albums = response.body();
+                searchQueryMutableLiveData.setValue(albums);
+            }
+
+            @Override
+            public void onFailure(Call<List<Album>> call, Throwable t) {
+                Log.e("GET request", t.getMessage());
+            }
+        });
+
+        return searchQueryMutableLiveData;
+    }
+
+    public void getAlbumArtworkUrl(String searchQuery, Consumer<ItunesResponse> itunesResponseConsumer){
+
+        Call<Results> call = itunesApiService.getAlbumArtworkUrl(searchQuery);
+
+        call.enqueue(new Callback<Results>() {
+            @Override
+            public void onResponse(Call<Results> call, Response<Results> response) {
+                Results results = response.body();
+                itunesResponse = results.getResults().get(0);
+                itunesResponseConsumer.accept(itunesResponse);
+                Log.i("Itunes API Sucess", itunesResponse.getArtworkUrl100());
+            }
+
+            @Override
+            public void onFailure(Call<Results> call, Throwable t) {
+                Log.i("Itunes API Fail", t.getMessage());
+                itunesResponseConsumer.accept(null);
+            }
+        });
+
     }
 }

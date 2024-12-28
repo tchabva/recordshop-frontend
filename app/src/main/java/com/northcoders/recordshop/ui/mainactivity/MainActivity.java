@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.ActivityMainBinding;
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.model.ItunesResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
         artistSearchView.clearFocus();
 
         setSearchView();
+
+        viewModel.getAllAlbumsByArtistName("TC-EP");
+
+//        ItunesResponse itunesResponse = viewModel.getAlbumAtworkUrl("TC-EP Ephemeral Emotions");
     }
 
     private void setSearchView(){

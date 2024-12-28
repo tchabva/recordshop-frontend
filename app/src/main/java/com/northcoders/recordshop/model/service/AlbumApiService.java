@@ -11,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface AlbumApiService {
 
@@ -25,4 +26,7 @@ public interface AlbumApiService {
 
     @DELETE("albums/{id}")
     Call<Void> deleteAlbum(@Path("id") long id);
+
+    @GET("albums/artist")
+    Call<List<Album>> getAllAlbumsByArtist(@Query("name") String artistName);
 }
