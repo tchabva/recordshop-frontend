@@ -12,7 +12,6 @@ import com.northcoders.recordshop.model.service.RetrofitInstance;
 
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,7 +24,7 @@ public class AlbumRepository {
     private Application application;
     private AlbumApiService albumApiService;
     private ItunesApiService itunesApiService;
-    private ItunesResponse itunesResponse;
+    private ArtworkUrl itunesResponse;
 
     public AlbumRepository(Application application) {
         this.application = application;
@@ -149,21 +148,21 @@ public class AlbumRepository {
         return searchQueryMutableLiveData;
     }
 
-    public void getAlbumArtworkUrl(String searchQuery, Consumer<ItunesResponse> itunesResponseConsumer){
+    public void getAlbumArtworkUrl(String searchQuery, Consumer<ArtworkUrl> itunesResponseConsumer){
 
-        Call<Results> call = itunesApiService.getAlbumArtworkUrl(searchQuery);
+        Call<ItunesResponse> call = itunesApiService.getAlbumArtworkUrl(searchQuery);
 
-        call.enqueue(new Callback<Results>() {
+        call.enqueue(new Callback<ItunesResponse>() {
             @Override
-            public void onResponse(Call<Results> call, Response<Results> response) {
-                Results results = response.body();
+            public void onResponse(Call<ItunesResponse> call, Response<ItunesResponse> response) {
+                ItunesResponse results = response.body();
                 itunesResponse = results.getResults().get(0);
                 itunesResponseConsumer.accept(itunesResponse);
                 Log.i("Itunes API Sucess", itunesResponse.getArtworkUrl100());
             }
 
             @Override
-            public void onFailure(Call<Results> call, Throwable t) {
+            public void onFailure(Call<ItunesResponse> call, Throwable t) {
                 Log.i("Itunes API Fail", t.getMessage());
                 itunesResponseConsumer.accept(null);
             }

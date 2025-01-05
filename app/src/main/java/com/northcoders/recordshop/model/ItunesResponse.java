@@ -1,20 +1,25 @@
 package com.northcoders.recordshop.model;
 
+import java.util.List;
+
 public class ItunesResponse {
-    String artworkUrl100;
 
-    public ItunesResponse(String artworkUrl100) {
-        this.artworkUrl100 = artworkUrl100;
+    private Integer resultCount;
+    private List<ArtworkUrl> results;
+
+    public Integer getResultCount() {
+        return resultCount;
     }
 
-    public ItunesResponse() {
+    public void setResultCount(Integer resultCount) {
+        this.resultCount = resultCount;
     }
 
-    public String getArtworkUrl100() {
-        return artworkUrl100;
+    public List<ArtworkUrl> getResults() {
+        return results;
     }
 
-    public void setArtworkUrl100(String artworkUrl100) {
-        this.artworkUrl100 = artworkUrl100;
+    public void setResults(List<ArtworkUrl> results) {
+        this.results = results;
     }
 }

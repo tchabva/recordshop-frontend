@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.model.Album;
-import com.northcoders.recordshop.model.ItunesResponse;
+import com.northcoders.recordshop.model.ArtworkUrl;
 import com.northcoders.recordshop.ui.mainactivity.MainActivity;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 
@@ -66,9 +66,9 @@ public class ViewAlbumClickHandler {
 
             String searchQuery = album.getArtist().trim().concat(" ").concat(album.getTitle());
 
-            Consumer<ItunesResponse> itunesResponseConsumer = itunesResponse -> {
-                Log.i("Itunes Response Callback", itunesResponse.getArtworkUrl100());
-                newAlbum.setArtworkUrl(itunesResponse.getArtworkUrl100());
+            Consumer<ArtworkUrl> itunesResponseConsumer = artworkUrlResponse -> {
+                Log.i("Itunes Response Callback", artworkUrlResponse.getArtworkUrl100());
+                newAlbum.setArtworkUrl(artworkUrlResponse.getArtworkUrl100());
                 viewModel.addAlbum(newAlbum);
 
                 Intent intent = new Intent(context, MainActivity.class);
