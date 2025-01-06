@@ -75,7 +75,7 @@ public class ViewAlbumClickHandler {
                 context.startActivity(intent);
             };
 
-            viewModel.getAlbumAtworkUrl(searchQuery, itunesResponseConsumer);
+            viewModel.getAlbumArtworkUrl(searchQuery, itunesResponseConsumer);
 
         }
         Log.i("ADD Button", "Add Button Clicked");
