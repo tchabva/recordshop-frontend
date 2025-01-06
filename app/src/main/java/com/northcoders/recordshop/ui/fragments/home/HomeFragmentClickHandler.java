@@ -1,4 +1,4 @@
-package com.northcoders.recordshop.ui.mainactivity;
+package com.northcoders.recordshop.ui.fragments.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,12 +7,12 @@ import android.view.View;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.ui.viewalbum.ViewAlbumActivity;
 
-public class MainActivityClickHandler {
+public class HomeFragmentClickHandler {
 
     private final Context context;
     private final static String ALBUM_KEY = "album";
 
-    public MainActivityClickHandler(Context context) {
+    public HomeFragmentClickHandler(Context context) {
         this.context = context;
     }
 

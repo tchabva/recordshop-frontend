@@ -1,11 +1,9 @@
-package com.northcoders.recordshop.ui.fragments;
+package com.northcoders.recordshop.ui.fragments.home;
 
-import android.app.Application;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -19,11 +17,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 
-import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.FragmentHomeBinding;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.ui.mainactivity.AlbumAdapter;
-import com.northcoders.recordshop.ui.mainactivity.MainActivityClickHandler;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 
 import java.util.ArrayList;
@@ -36,7 +32,7 @@ public class HomeFragment extends Fragment {
     private AlbumAdapter albumAdapter;
     private MainActivityViewModel viewModel;
     private FragmentHomeBinding binding;
-    private MainActivityClickHandler handler;
+    private HomeFragmentClickHandler handler;
     private SearchView titleSearchView;
     private ArrayList<Album> filteredAlbumList;
     private SearchView artistSearchView;
@@ -53,7 +49,7 @@ public class HomeFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
 
         // Initialise the ClickHandler
-        handler = new MainActivityClickHandler(getContext());
+        handler = new HomeFragmentClickHandler(getContext());
 
     }
 

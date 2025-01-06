@@ -7,14 +7,14 @@
     <data>
         <variable
             name="clickHandler"
-            type="com.northcoders.recordshop.ui.mainactivity.MainActivityClickHandler" />
+            type="com.northcoders.recordshop.ui.fragments.home.HomeFragmentClickHandler" />
     </data>
 
 <FrameLayout
     android:id="@+id/home_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.HomeFragment">
+    tools:context=".ui.fragments.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/home"

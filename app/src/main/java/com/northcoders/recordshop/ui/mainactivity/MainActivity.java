@@ -11,7 +11,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.ActivityMainBinding;
 
-import com.northcoders.recordshop.ui.fragments.HomeFragment;
+import com.northcoders.recordshop.ui.fragments.home.HomeFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
 
