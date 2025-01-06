@@ -1,8 +1,10 @@
 package com.northcoders.recordshop.ui.mainactivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
@@ -11,14 +13,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.navigation.NavigationBarView;
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.ActivityMainBinding;
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.model.ItunesResponse;
+import com.northcoders.recordshop.ui.fragments.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
 
     private RecyclerView recyclerView;
     private ArrayList<Album> albumList;
@@ -29,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private SearchView titleSearchView;
     private ArrayList<Album> filteredAlbumList;
     private SearchView artistSearchView;
+    private NavigationBarView bottomNavigation;
+    private HomeFragment homeFragment = new HomeFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         // activity_main Binding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        bottomNavigation = binding.bottomNavigationView;
+
+        bottomNavigation.setOnItemSelectedListener(this);
+
+        bottomNavigation.setSelectedItemId(R.id.home);
+
 
         // initialising the ViewModel
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
@@ -57,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel.getAllAlbumsByArtistName("TC-EP");
 
-//        ItunesResponse itunesResponse = viewModel.getAlbumAtworkUrl("TC-EP Ephemeral Emotions");
+        ItunesResponse itunesResponse = viewModel.getAlbumAtworkUrl("TC-EP Ephemeral Emotions");
     }
 
     private void setSearchView(){
@@ -131,5 +145,18 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         albumAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.home){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame_layout_fragment, homeFragment)
+                    .commit();
+            return true;
+        }
+
+        return false;
     }
 }
