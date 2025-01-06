@@ -45,108 +45,106 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         // activity_main Binding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        // Binding the bottom Navigation View
         bottomNavigation = binding.bottomNavigationView;
-
         bottomNavigation.setOnItemSelectedListener(this);
-
         bottomNavigation.setSelectedItemId(R.id.home);
 
-
         // initialising the ViewModel
-        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-
-        handler = new MainActivityClickHandler(this);
-
-        binding.setClickHandler(handler);
-
-        getAllInStockAlbums();
-
-        titleSearchView = binding.albumTitleSearchView;
-        titleSearchView.clearFocus();
-
-        artistSearchView = binding.albumArtistSearchView;
-        artistSearchView.clearFocus();
-
-        setSearchView();
-
-        viewModel.getAllAlbumsByArtistName("TC-EP");
-
-        ItunesResponse itunesResponse = viewModel.getAlbumAtworkUrl("TC-EP Ephemeral Emotions");
+//        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+//
+//        handler = new MainActivityClickHandler(this);
+//
+//        binding.setClickHandler(handler);
+//
+//        getAllInStockAlbums();
+//
+//        titleSearchView = binding.albumTitleSearchView;
+//        titleSearchView.clearFocus();
+//
+//        artistSearchView = binding.albumArtistSearchView;
+//        artistSearchView.clearFocus();
+//
+//        setSearchView();
+//
+//        viewModel.getAllAlbumsByArtistName("TC-EP");
+//
+//        ItunesResponse itunesResponse = viewModel.getAlbumAtworkUrl("TC-EP Ephemeral Emotions");
     }
 
-    private void setSearchView(){
+//    private void setSearchView(){
+//
+//        titleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                filterList(newText, artistSearchView.getQuery().toString());
+//                return true;
+//            }
+//        });
+//
+//        artistSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                filterList(titleSearchView.getQuery().toString(),newText);
+//                return true;
+//            }
+//        });
+//
+//    }
+//
+//    private void filterList(String titleText, String artistText) {
+//        filteredAlbumList = new ArrayList<>();
+//
+//        for (Album album : albumList) {
+//            boolean matchesTitle = album.getTitle().toLowerCase().contains(titleText.toLowerCase());
+//            boolean matchesArtist = album.getArtist().toLowerCase().contains(artistText.toLowerCase());
+//
+//            if (matchesTitle && matchesArtist) {
+//                filteredAlbumList.add(album);
+//            }
+//        }
+//
+//        if (filteredAlbumList.isEmpty()) {
+//            Toast.makeText(this, "No albums found!", Toast.LENGTH_SHORT).show();
+//            albumAdapter.setFilteredList(filteredAlbumList);
+//        } else {
+//            albumAdapter.setFilteredList(filteredAlbumList);
+//        }
+//    }
+//
+//    private void getAllInStockAlbums() {
+//        // Observe the changes in the album list
+//        viewModel.getAllInStockAlbums().observe(this, new Observer<List<Album>>() {
+//            @Override
+//            public void onChanged(List<Album> albumsFromLiveData) {
+//                albumList = (ArrayList<Album>) albumsFromLiveData;
+//
+//                displayAlbumsInRecyclerView();
+//            }
+//        });
+//    }
 
-        titleSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                filterList(newText, artistSearchView.getQuery().toString());
-                return true;
-            }
-        });
-
-        artistSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                filterList(titleSearchView.getQuery().toString(),newText);
-                return true;
-            }
-        });
-
-    }
-
-    private void filterList(String titleText, String artistText) {
-        filteredAlbumList = new ArrayList<>();
-
-        for (Album album : albumList) {
-            boolean matchesTitle = album.getTitle().toLowerCase().contains(titleText.toLowerCase());
-            boolean matchesArtist = album.getArtist().toLowerCase().contains(artistText.toLowerCase());
-
-            if (matchesTitle && matchesArtist) {
-                filteredAlbumList.add(album);
-            }
-        }
-
-        if (filteredAlbumList.isEmpty()) {
-            Toast.makeText(this, "No albums found!", Toast.LENGTH_SHORT).show();
-            albumAdapter.setFilteredList(filteredAlbumList);
-        } else {
-            albumAdapter.setFilteredList(filteredAlbumList);
-        }
-    }
-
-    private void getAllInStockAlbums() {
-        // Observe the changes in the album list
-        viewModel.getAllInStockAlbums().observe(this, new Observer<List<Album>>() {
-            @Override
-            public void onChanged(List<Album> albumsFromLiveData) {
-                albumList = (ArrayList<Album>) albumsFromLiveData;
-
-                displayAlbumsInRecyclerView();
-            }
-        });
-    }
-
-    // Sets up the RecyclerView
-    private void displayAlbumsInRecyclerView() {
-        recyclerView = binding.recyclerView;
-        albumAdapter = new AlbumAdapter(albumList, handler);
-        recyclerView.setAdapter(albumAdapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        albumAdapter.notifyDataSetChanged();
-    }
-
+//    // Sets up the RecyclerView
+//    private void displayAlbumsInRecyclerView() {
+//        recyclerView = binding.recyclerView;
+//        albumAdapter = new AlbumAdapter(albumList, handler);
+//        recyclerView.setAdapter(albumAdapter);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setHasFixedSize(true);
+//        albumAdapter.notifyDataSetChanged();
+//    }
+//
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.home){
