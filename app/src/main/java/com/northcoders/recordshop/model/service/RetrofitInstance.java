@@ -9,7 +9,7 @@ public class RetrofitInstance {
 
     private static Retrofit retrofit = null;
     private static Retrofit retrofit2 = null;
-    private static final String BASE_URL = "http://10.0.2.2:8080/api/v1/";
+    private static final String BASE_URL = "http://192.168.50.167:8080/api/v1/";
     private static final String BASE_URL2 = "https://itunes.apple.com/";
 
     public static AlbumApiService getService(){
