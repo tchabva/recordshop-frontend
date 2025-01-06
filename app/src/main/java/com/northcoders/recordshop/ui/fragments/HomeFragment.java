@@ -84,9 +84,13 @@ public class HomeFragment extends Fragment {
         artistSearchView = binding.albumArtistSearchView;
         artistSearchView.clearFocus();
 
+        getAllInStockAlbums();
+
         setSearchView();
 
-        getAllInStockAlbums();
+//        viewModel.getAllAlbumsByArtistName("TC-EP");
+//
+//        ItunesResponse itunesResponse = viewModel.getAlbumAtworkUrl("TC-EP Ephemeral Emotions");
     }
 
     private void setSearchView(){
@@ -141,7 +145,7 @@ public class HomeFragment extends Fragment {
 
     private void getAllInStockAlbums() {
         // Observe the changes in the album list
-        viewModel.getAllInStockAlbums().observe(getActivity(), new Observer<List<Album>>() {
+        viewModel.getAllInStockAlbums().observe(requireActivity(), new Observer<List<Album>>() {
             @Override
             public void onChanged(List<Album> albumsFromLiveData) {
                 albumList = (ArrayList<Album>) albumsFromLiveData;
