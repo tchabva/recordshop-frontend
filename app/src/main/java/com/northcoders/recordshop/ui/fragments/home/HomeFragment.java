@@ -1,5 +1,6 @@
 package com.northcoders.recordshop.ui.fragments.home;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -49,7 +50,7 @@ public class HomeFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
 
         // Initialise the ClickHandler
-        handler = new HomeFragmentClickHandler(getContext());
+        handler = new HomeFragmentClickHandler(getActivity());
 
     }
 

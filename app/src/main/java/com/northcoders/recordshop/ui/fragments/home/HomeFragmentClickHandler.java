@@ -1,38 +1,57 @@
 package com.northcoders.recordshop.ui.fragments.home;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
+import androidx.fragment.app.FragmentActivity;
+
+import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.ui.fragments.viewalbum.ViewAlbumFragment;
 import com.northcoders.recordshop.ui.viewalbum.ViewAlbumActivity;
 
 public class HomeFragmentClickHandler {
 
-    private final Context context;
+    private final FragmentActivity activity;
     private final static String ALBUM_KEY = "album";
 
-    public HomeFragmentClickHandler(Context context) {
-        this.context = context;
+    public HomeFragmentClickHandler(FragmentActivity activity) {
+        this.activity = activity;
     }
 
     public void onAlbumItemClicked(Album album){
 
-        Intent intent = new Intent(context, ViewAlbumActivity.class);
+//        Intent intent = new Intent(context, ViewAlbumActivity.class);
+//
+//        intent.putExtra(ALBUM_KEY, album);
+//
+//        context.startActivity(intent);
 
-        intent.putExtra(ALBUM_KEY, album);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(ALBUM_KEY, album);
 
-        context.startActivity(intent);
+        ViewAlbumFragment viewAlbumFragment = new ViewAlbumFragment();
+        viewAlbumFragment.setArguments(bundle);
+
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_layout_fragment, viewAlbumFragment)
+                .addToBackStack(null) // Allows for back navigation
+                .commit();
     }
 
     public void onAddAlbumFABClicked(View view){
 
-        Intent intent = new Intent(context, ViewAlbumActivity.class);
+        Intent intent = new Intent(activity, ViewAlbumActivity.class);
 
         Album album = null;
 
         intent.putExtra("album", album);
 
-        context.startActivity(intent);
+        activity.startActivity(intent);
     }
 }
