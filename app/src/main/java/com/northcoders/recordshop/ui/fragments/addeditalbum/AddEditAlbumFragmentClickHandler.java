@@ -71,20 +71,22 @@ public class AddEditAlbumFragmentClickHandler implements DeleteAlbumInterface {
                 if (artworkUrlResponse != null){
                     Log.i("Itunes Response Callback", artworkUrlResponse.getArtworkUrl100());
 
-                    // Increasing the resolution of the image retrieved by the URL
-                    String itunesArtworkUrl = artworkUrlResponse.getArtworkUrl100();
+                    if(artworkUrlResponse.getArtistName().toLowerCase().contains(album.getArtist().toLowerCase())){
+                        // Increasing the resolution of the image retrieved by the URL
+                        String itunesArtworkUrl = artworkUrlResponse.getArtworkUrl100();
 
-                    itunesArtworkUrl = itunesArtworkUrl.replace(
-                            "100x100bb.jpg",
-                            "1000x1000bb.jpg"
-                    );
+                        itunesArtworkUrl = itunesArtworkUrl.replace(
+                                "100x100bb.jpg",
+                                "1000x1000bb.jpg"
+                        );
 
-                    Log.i("Updated Artwork URL", itunesArtworkUrl);
+                        Log.i("Updated Artwork URL", itunesArtworkUrl);
 
-                    newAlbum.setArtworkUrl(itunesArtworkUrl);
+                        newAlbum.setArtworkUrl(itunesArtworkUrl);
+                    }
                 }
 
-                viewModel.addAlbum(newAlbum);
+                viewModel.addAlbum(newAlbum); // Saving the album to the Database
 
                 activity.getSupportFragmentManager()
                         .beginTransaction()
