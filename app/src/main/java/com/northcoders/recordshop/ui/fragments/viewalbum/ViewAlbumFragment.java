@@ -1,5 +1,6 @@
 package com.northcoders.recordshop.ui.fragments.viewalbum;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.FragmentHomeBinding;
 import com.northcoders.recordshop.databinding.FragmentViewAlbumBinding;
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.ui.viewalbum.ViewAlbumActivity;
 
 
 public class ViewAlbumFragment extends Fragment {
@@ -53,15 +55,38 @@ public class ViewAlbumFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Binding the FABs in the View
         editFAB = binding.editFab;
         backFAB = binding.backFab;
 
+        // Loading the Album Artwork
         Glide.with(binding.albumArtwork.getContext())
                 .load(album.getArtworkUrl())
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .error(R.drawable.holder_album_artwork)
                 .into(binding.albumArtwork);
 
+        // Binding the album to the view.
         binding.setAlbum(album);
+
+        // Returns to the HomeFragment View
+        backFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+
+        // Implemented Edit Button to ViewAlbumActivty
+        editFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ViewAlbumActivity.class);
+
+                intent.putExtra(ALBUM_KEY, album);
+
+                getContext().startActivity(intent);
+            }
+        });
     }
 }
