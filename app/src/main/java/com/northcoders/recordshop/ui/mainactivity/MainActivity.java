@@ -11,13 +11,16 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.ActivityMainBinding;
 
+import com.northcoders.recordshop.ui.fragments.addeditalbum.AddEditAlbumFragment;
 import com.northcoders.recordshop.ui.fragments.home.HomeFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
 
     private ActivityMainBinding binding;
     private NavigationBarView bottomNavigation;
-    private HomeFragment homeFragment = new HomeFragment();
+    private final HomeFragment homeFragment = new HomeFragment();
+    private final AddEditAlbumFragment addEditAlbumFragment = new AddEditAlbumFragment();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,14 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                     .replace(R.id.frame_layout_fragment, homeFragment)
                     .commit();
             return true;
+        }
+
+        if (item.getItemId() == R.id.add){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame_layout_fragment, addEditAlbumFragment)
+                    .commit();
+            return  true;
         }
 
         return false;

@@ -1,6 +1,5 @@
 package com.northcoders.recordshop.ui.fragments.viewalbum;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,11 +13,9 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.northcoders.recordshop.R;
-import com.northcoders.recordshop.databinding.FragmentHomeBinding;
 import com.northcoders.recordshop.databinding.FragmentViewAlbumBinding;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.ui.fragments.addeditalbum.AddEditAlbumFragment;
-import com.northcoders.recordshop.ui.viewalbum.ViewAlbumActivity;
 
 
 public class ViewAlbumFragment extends Fragment {

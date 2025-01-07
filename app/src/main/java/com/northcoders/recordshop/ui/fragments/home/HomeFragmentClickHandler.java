@@ -1,9 +1,5 @@
 package com.northcoders.recordshop.ui.fragments.home;
 
-import static com.google.android.material.internal.ContextUtils.getActivity;
-
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,7 +8,6 @@ import androidx.fragment.app.FragmentActivity;
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.ui.fragments.viewalbum.ViewAlbumFragment;
-import com.northcoders.recordshop.ui.viewalbum.ViewAlbumActivity;
 
 public class HomeFragmentClickHandler {
 
@@ -46,12 +41,12 @@ public class HomeFragmentClickHandler {
 
     public void onAddAlbumFABClicked(View view){
 
-        Intent intent = new Intent(activity, ViewAlbumActivity.class);
-
-        Album album = null;
-
-        intent.putExtra("album", album);
-
-        activity.startActivity(intent);
+//        Intent intent = new Intent(activity, ViewAlbumActivity.class);
+//
+//        Album album = null;
+//
+//        intent.putExtra("album", album);
+//
+//        activity.startActivity(intent);
     }
 }

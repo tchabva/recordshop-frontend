@@ -1,7 +1,6 @@
 package com.northcoders.recordshop.ui.fragments.addeditalbum;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
@@ -15,7 +14,6 @@ import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.model.ArtworkUrl;
 import com.northcoders.recordshop.ui.mainactivity.MainActivity;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
-import com.northcoders.recordshop.ui.viewalbum.ViewScreenState;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -25,9 +23,9 @@ public class AddEditAlbumFragmentClickHandler {
     private final Album album;
     private final FragmentActivity activity;
     private final MainActivityViewModel viewModel;
-    private final ViewScreenState state;
+    private final AddEditScreenState state;
 
-    public AddEditAlbumFragmentClickHandler(Album album, FragmentActivity activity, MainActivityViewModel viewModel, ViewScreenState state) {
+    public AddEditAlbumFragmentClickHandler(Album album, FragmentActivity activity, MainActivityViewModel viewModel, AddEditScreenState state) {
         this.album = album;
         this.activity = activity;
         this.viewModel = viewModel;

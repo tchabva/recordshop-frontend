@@ -15,8 +15,6 @@ import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.FragmentAddEditAlbumBinding;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
-import com.northcoders.recordshop.ui.viewalbum.ViewAlbumClickHandler;
-import com.northcoders.recordshop.ui.viewalbum.ViewScreenState;
 
 
 public class AddEditAlbumFragment extends Fragment {
@@ -25,7 +23,7 @@ public class AddEditAlbumFragment extends Fragment {
     private AddEditAlbumFragmentClickHandler handler;
     private MainActivityViewModel viewModel;
     private Album album;
-    private ViewScreenState state;
+    private AddEditScreenState state;
     private final static String ALBUM_KEY = "album";
 
     public AddEditAlbumFragment() {
@@ -50,10 +48,10 @@ public class AddEditAlbumFragment extends Fragment {
 
         if (getArguments() != null){
             passedAlbum = getArguments().getParcelable(ALBUM_KEY);
-            state = ViewScreenState.UPDATE_ALBUM; // If album exists state is Update Album
+            state = AddEditScreenState.UPDATE_ALBUM; // If album exists state is Update Album
         }else {
             passedAlbum = null;
-            state = ViewScreenState.ADD_ALBUM; // If album is null state is Add Album
+            state = AddEditScreenState.ADD_ALBUM; // If album is null state is Add Album
         }
 
         // If passedAlbum is null assign album to a new Album object, else assign the passedAlbum
@@ -68,11 +66,11 @@ public class AddEditAlbumFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (state == ViewScreenState.UPDATE_ALBUM){
+        if (state == AddEditScreenState.UPDATE_ALBUM){
             binding.headerTextView.setText(R.string.edit_album);
             binding.submitButton.setText(R.string.update);
             binding.deleteButton.setVisibility(View.VISIBLE);
-            state = ViewScreenState.UPDATE_ALBUM;
+            state = AddEditScreenState.UPDATE_ALBUM;
         }
 
         binding.setAlbum(album);
