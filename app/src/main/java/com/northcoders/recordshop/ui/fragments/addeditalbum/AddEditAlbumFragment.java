@@ -71,6 +71,8 @@ public class AddEditAlbumFragment extends Fragment {
             binding.submitButton.setText(R.string.update);
             binding.deleteButton.setVisibility(View.VISIBLE);
             state = AddEditScreenState.UPDATE_ALBUM;
+        }else {
+            binding.backFab.setVisibility(View.INVISIBLE);
         }
 
         binding.setAlbum(album);
