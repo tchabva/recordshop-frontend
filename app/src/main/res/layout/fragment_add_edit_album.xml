@@ -1,14 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="album"
+            type="com.northcoders.recordshop.model.Album" />
+        <variable
+            name="clickHandler"
+            type="com.northcoders.recordshop.ui.fragments.addeditalbum.AddEditAlbumFragmentClickHandler" />
+    </data>
+
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.AddEditAlbumFragment">
+    tools:context=".ui.fragments.addeditalbum.AddEditAlbumFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".ui.viewalbum.ViewAlbumActivity">
+
+        <TableRow
+            android:id="@+id/header_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:padding="4dp"
+            android:background="@color/light_grey">
+
+            <ImageView
+                android:layout_height="40dp"
+                android:layout_width="40dp"
+                android:id="@+id/album_left"
+                android:src="@drawable/holder_album_artwork"
+                android:contentDescription="@string/header_image"/>
+
+            <TextView
+                android:id="@+id/header_text_view"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="@string/add_album"
+                android:layout_marginHorizontal="8dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold"
+                />
+
+            <ImageView
+                android:layout_height="40dp"
+                android:layout_width="40dp"
+                android:id="@+id/album_right"
+                android:src="@drawable/holder_album_artwork"
+                android:contentDescription="@string/header_image"/>
+        </TableRow>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_row">
+
+            <EditText
+                android:id="@+id/enter_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="@string/title"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:singleLine="true"
+                android:text="@={album.title}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/enter_artist"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="@string/artist"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:singleLine="true"
+                android:text="@={album.artist}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/enter_title" />
+
+            <EditText
+                android:id="@+id/enter_genre"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="@string/genre"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:singleLine="true"
+                android:text="@={album.genre}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/enter_artist" />
+
+
+            <EditText
+                android:id="@+id/enter_release_date"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="@string/release_date_hint"
+                android:importantForAutofill="no"
+                android:inputType="date"
+                android:singleLine="true"
+                android:text="@={album.releaseDate}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/enter_genre" />
+
+            <EditText
+                android:id="@+id/enter_artwork_url"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="@string/artwork_url_hint"
+                android:importantForAutofill="no"
+                android:inputType="textUri"
+                android:singleLine="true"
+                android:text="@={album.artworkUrl}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/enter_release_date" />
+
+            <EditText
+                android:id="@+id/enter_price"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="@string/price_hint"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:text="@={album.price}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/enter_artwork_url" />
+
+            <EditText
+                android:id="@+id/enter_stock"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="@string/stock_hint"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:singleLine="true"
+                android:text="@={album.stock}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/enter_price" />
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:onClick="@{clickHandler::onSubmitButtonClicked}"
+                android:text="@string/add"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/enter_stock" />
+
+            <Button
+                android:id="@+id/delete_button"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:onClick="@{clickHandler::onDeleteButtonClicked}"
+                android:text="@string/delete"
+                android:textSize="32sp"
+                android:backgroundTint="@android:color/holo_red_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/submit_button"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/back_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/back_to_main_activity"
+                android:onClick="@{clickHandler::onBackButtonClicked}"
+                android:src="@android:drawable/ic_menu_revert"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
+</layout>

@@ -17,6 +17,7 @@ import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.FragmentHomeBinding;
 import com.northcoders.recordshop.databinding.FragmentViewAlbumBinding;
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.ui.fragments.addeditalbum.AddEditAlbumFragment;
 import com.northcoders.recordshop.ui.viewalbum.ViewAlbumActivity;
 
 
@@ -81,11 +82,23 @@ public class ViewAlbumFragment extends Fragment {
         editFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ViewAlbumActivity.class);
+//                Intent intent = new Intent(getContext(), ViewAlbumActivity.class);
+//
+//                intent.putExtra(ALBUM_KEY, album);
+//
+//                getContext().startActivity(intent);
 
-                intent.putExtra(ALBUM_KEY, album);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(ALBUM_KEY, album);
 
-                getContext().startActivity(intent);
+                AddEditAlbumFragment addEditAlbumFragment = new AddEditAlbumFragment();
+                addEditAlbumFragment.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_layout_fragment, addEditAlbumFragment)
+                        .addToBackStack(null) // Allows for back navigation
+                        .commit();
             }
         });
     }
