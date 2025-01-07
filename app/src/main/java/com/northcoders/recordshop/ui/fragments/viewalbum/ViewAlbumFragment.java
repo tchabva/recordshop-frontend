@@ -1,10 +1,12 @@
 package com.northcoders.recordshop.ui.fragments.viewalbum;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,16 +17,19 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.FragmentViewAlbumBinding;
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.model.DeleteAlbumInterface;
 import com.northcoders.recordshop.ui.fragments.addeditalbum.AddEditAlbumFragment;
+import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 
 
-public class ViewAlbumFragment extends Fragment {
+public class ViewAlbumFragment extends Fragment implements DeleteAlbumInterface {
 
     private FragmentViewAlbumBinding binding;
     private FloatingActionButton editFAB;
-    private FloatingActionButton backFAB;
+    private FloatingActionButton deleteFAB;
     private Album album;
     private final static String ALBUM_KEY = "album";
+    private MainActivityViewModel viewModel;
 
 
     public ViewAlbumFragment() {
@@ -35,6 +40,7 @@ public class ViewAlbumFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
     }
 
     @Override
@@ -55,7 +61,7 @@ public class ViewAlbumFragment extends Fragment {
 
         // Binding the FABs in the View
         editFAB = binding.editFab;
-        backFAB = binding.backFab;
+        deleteFAB = binding.deleteFab;
 
         // Loading the Album Artwork
         Glide.with(binding.albumArtwork.getContext())
@@ -68,10 +74,18 @@ public class ViewAlbumFragment extends Fragment {
         binding.setAlbum(album);
 
         // Returns to the HomeFragment View
-        backFAB.setOnClickListener(new View.OnClickListener() {
+        deleteFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().popBackStack();
+//                getActivity().getSupportFragmentManager().popBackStack();
+
+                AlertDialog deleteAlbumAlertDialog = deleteAlbumAlertDialog(
+                        requireActivity(),
+                        viewModel,
+                        album
+                        );
+
+                deleteAlbumAlertDialog.show();
             }
         });
 
