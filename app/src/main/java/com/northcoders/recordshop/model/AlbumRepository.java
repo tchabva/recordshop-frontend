@@ -24,7 +24,7 @@ public class AlbumRepository {
     private Application application;
     private AlbumApiService albumApiService;
     private ItunesApiService itunesApiService;
-    private ArtworkUrl itunesResponse;
+    private ArtworkUrl artworkUrl;
 
     public AlbumRepository(Application application) {
         this.application = application;
@@ -155,10 +155,18 @@ public class AlbumRepository {
         call.enqueue(new Callback<ItunesResponse>() {
             @Override
             public void onResponse(Call<ItunesResponse> call, Response<ItunesResponse> response) {
-                ItunesResponse results = response.body();
-                itunesResponse = results.getResults().get(0);
-                itunesResponseConsumer.accept(itunesResponse);
-                Log.i("Itunes API Sucess", itunesResponse.getArtworkUrl100());
+                ItunesResponse itunesResponse = response.body();
+                if (itunesResponse != null){
+                    if (itunesResponse.getResultCount() > 0){
+                        artworkUrl = itunesResponse.getResults().get(0);
+                        itunesResponseConsumer.accept(artworkUrl);
+                        Log.i("Itunes API Success", artworkUrl.getArtworkUrl100());
+                    }else {
+                        // If there is a successful response but no artwork, consumer returns null
+                        itunesResponseConsumer.accept(null);
+                        Log.i("Itunes API Success", "No Result");
+                    }
+                }
             }
 
             @Override

@@ -68,12 +68,16 @@ public class AddEditAlbumFragmentClickHandler {
             String searchQuery = album.getArtist().trim().concat(" ").concat(album.getTitle());
 
             Consumer<ArtworkUrl> itunesResponseConsumer = artworkUrlResponse -> {
-                Log.i("Itunes Response Callback", artworkUrlResponse.getArtworkUrl100());
-                newAlbum.setArtworkUrl(artworkUrlResponse.getArtworkUrl100());
-                viewModel.addAlbum(newAlbum);
 
+                if (artworkUrlResponse != null){
+                    Log.i("Itunes Response Callback", artworkUrlResponse.getArtworkUrl100());
+                    newAlbum.setArtworkUrl(artworkUrlResponse.getArtworkUrl100());
+                }
+
+                viewModel.addAlbum(newAlbum);
                 Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);
+
             };
 
             viewModel.getAlbumArtworkUrl(searchQuery, itunesResponseConsumer);
@@ -107,8 +111,9 @@ public class AddEditAlbumFragmentClickHandler {
 
             viewModel.updateAlbum(albumId, updatedAlbum);
 
-            Intent intent = new Intent(activity, MainActivity.class);
-            activity.startActivity(intent);
+//            Intent intent = new Intent(activity, MainActivity.class);
+//            activity.startActivity(intent);
+            activity.getSupportFragmentManager().popBackStack();
 
             Log.i("Update Button", "Update Button Clicked");
         }
@@ -119,6 +124,7 @@ public class AddEditAlbumFragmentClickHandler {
     }
 
     public void onBackButtonClicked(View view){
+        // TODO: Add functionality for a dialog to pop up if back is clicked for an edited album that has not been updated
         activity.getSupportFragmentManager().popBackStack();
     }
 
