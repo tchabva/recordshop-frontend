@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.model.ArtworkUrl;
+import com.northcoders.recordshop.ui.fragments.home.HomeFragment;
 import com.northcoders.recordshop.ui.mainactivity.MainActivity;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 
@@ -71,15 +72,32 @@ public class AddEditAlbumFragmentClickHandler {
 
                 if (artworkUrlResponse != null){
                     Log.i("Itunes Response Callback", artworkUrlResponse.getArtworkUrl100());
-                    newAlbum.setArtworkUrl(artworkUrlResponse.getArtworkUrl100());
+
+                    // Increasing the resolution of the image retrieved by the URL
+                    String itunesArtworkUrl = artworkUrlResponse.getArtworkUrl100();
+
+                    itunesArtworkUrl = itunesArtworkUrl.replace(
+                            "100x100bb.jpg",
+                            "1000x1000bb.jpg"
+                    );
+
+                    Log.i("Updated Artwork URL", itunesArtworkUrl);
+
+                    newAlbum.setArtworkUrl(itunesArtworkUrl);
                 }
 
                 viewModel.addAlbum(newAlbum);
-                Intent intent = new Intent(activity, MainActivity.class);
-                activity.startActivity(intent);
 
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_layout_fragment, new HomeFragment())
+                        .commit();
             };
 
+            /*
+            NOTE: Ensures that the program will attempt to retrieve the artwork before posting an
+                Album to the API
+             */
             viewModel.getAlbumArtworkUrl(searchQuery, itunesResponseConsumer);
 
         }
@@ -111,8 +129,6 @@ public class AddEditAlbumFragmentClickHandler {
 
             viewModel.updateAlbum(albumId, updatedAlbum);
 
-//            Intent intent = new Intent(activity, MainActivity.class);
-//            activity.startActivity(intent);
             activity.getSupportFragmentManager().popBackStack();
 
             Log.i("Update Button", "Update Button Clicked");
