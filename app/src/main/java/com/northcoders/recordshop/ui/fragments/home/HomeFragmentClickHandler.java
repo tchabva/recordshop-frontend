@@ -20,15 +20,11 @@ public class HomeFragmentClickHandler {
 
     public void onAlbumItemClicked(Album album){
 
-//        Intent intent = new Intent(context, ViewAlbumActivity.class);
-//
-//        intent.putExtra(ALBUM_KEY, album);
-//
-//        context.startActivity(intent);
-
+        // Create Bundle to pass Album object
         Bundle bundle = new Bundle();
         bundle.putParcelable(ALBUM_KEY, album);
 
+        // Instantiate the Fragment that is going to receive the Album object
         ViewAlbumFragment viewAlbumFragment = new ViewAlbumFragment();
         viewAlbumFragment.setArguments(bundle);
 
@@ -37,16 +33,5 @@ public class HomeFragmentClickHandler {
                 .replace(R.id.frame_layout_fragment, viewAlbumFragment)
                 .addToBackStack(null) // Allows for back navigation
                 .commit();
-    }
-
-    public void onAddAlbumFABClicked(View view){
-
-//        Intent intent = new Intent(activity, ViewAlbumActivity.class);
-//
-//        Album album = null;
-//
-//        intent.putExtra("album", album);
-//
-//        activity.startActivity(intent);
     }
 }
