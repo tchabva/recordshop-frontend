@@ -119,8 +119,7 @@ public class AddEditAlbumFragmentClickHandler {
     }
 
     public void onBackButtonClicked(View view){
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
+        activity.getSupportFragmentManager().popBackStack();
     }
 
     private AlertDialog deleteAlbumAlertDialog(){

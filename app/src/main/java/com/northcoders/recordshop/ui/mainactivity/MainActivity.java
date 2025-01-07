@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.frame_layout_fragment, homeFragment)
+                    .addToBackStack(null)
                     .commit();
             return true;
         }
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.frame_layout_fragment, addEditAlbumFragment)
+                    .addToBackStack(null)
                     .commit();
             return  true;
         }
