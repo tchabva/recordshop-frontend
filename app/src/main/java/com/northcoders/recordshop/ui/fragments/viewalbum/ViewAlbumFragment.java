@@ -21,7 +21,6 @@ import com.northcoders.recordshop.model.DeleteAlbumInterface;
 import com.northcoders.recordshop.ui.fragments.addeditalbum.AddEditAlbumFragment;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 
-
 public class ViewAlbumFragment extends Fragment implements DeleteAlbumInterface {
 
     private FragmentViewAlbumBinding binding;
@@ -77,7 +76,6 @@ public class ViewAlbumFragment extends Fragment implements DeleteAlbumInterface 
         deleteFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                getActivity().getSupportFragmentManager().popBackStack();
 
                 AlertDialog deleteAlbumAlertDialog = deleteAlbumAlertDialog(
                         requireActivity(),
@@ -93,11 +91,6 @@ public class ViewAlbumFragment extends Fragment implements DeleteAlbumInterface 
         editFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getContext(), ViewAlbumActivity.class);
-//
-//                intent.putExtra(ALBUM_KEY, album);
-//
-//                getContext().startActivity(intent);
 
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(ALBUM_KEY, album);
