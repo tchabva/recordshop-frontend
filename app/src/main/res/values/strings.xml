@@ -10,7 +10,7 @@
     <string name="artist">Artist</string>
     <string name="genre">Genre</string>
     <string name="submit">Submit</string>
-    <string name="back_to_main_activity">Back to Main Activity</string>
+    <string name="back_button">Back Button</string>
     <string name="release_date_hint">Release Date ("YYYY-MM-DD")</string>
     <string name="price_hint">Price</string>
     <string name="stock_hint">Stock</string>
@@ -26,4 +26,7 @@
     <string name="dialig_delete_album_title">Delete Album</string>
     <string name="title_search_view_query_hint">Search title...</string>
     <string name="artist_search_view_query_hint">Search artist...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
 </resources>

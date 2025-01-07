@@ -1,32 +1,34 @@
-package com.northcoders.recordshop.ui.viewalbum;
+package com.northcoders.recordshop.ui.fragments.addeditalbum;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.model.ArtworkUrl;
+import com.northcoders.recordshop.ui.fragments.home.HomeFragment;
 import com.northcoders.recordshop.ui.mainactivity.MainActivity;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 
 import java.util.Objects;
 import java.util.function.Consumer;
 
-public class ViewAlbumClickHandler {
+public class AddEditAlbumFragmentClickHandler {
 
     private final Album album;
-    private final Context context;
+    private final FragmentActivity activity;
     private final MainActivityViewModel viewModel;
-    private final ViewScreenState state;
+    private final AddEditScreenState state;
 
-    public ViewAlbumClickHandler(Album album, Context context, MainActivityViewModel viewModel, ViewScreenState state) {
+    public AddEditAlbumFragmentClickHandler(Album album, FragmentActivity activity, MainActivityViewModel viewModel, AddEditScreenState state) {
         this.album = album;
-        this.context = context;
+        this.activity = activity;
         this.viewModel = viewModel;
         this.state = state;
     }
@@ -59,7 +61,7 @@ public class ViewAlbumClickHandler {
         if(newAlbum.getTitle() == null || newAlbum.getArtist() == null || newAlbum.getGenre() == null ||
                 newAlbum.getReleaseDate() == null ||  newAlbum.getPrice() == null || newAlbum.getStock() == null ){
             Toast.makeText(
-                    context,
+                    activity,
                     "Fields cannot be empty",
                     Toast.LENGTH_SHORT).show();
         }else {
@@ -67,15 +69,36 @@ public class ViewAlbumClickHandler {
             String searchQuery = album.getArtist().trim().concat(" ").concat(album.getTitle());
 
             Consumer<ArtworkUrl> itunesResponseConsumer = artworkUrlResponse -> {
-                Log.i("Itunes Response Callback", artworkUrlResponse.getArtworkUrl100());
-                newAlbum.setArtworkUrl(artworkUrlResponse.getArtworkUrl100());
+
+                if (artworkUrlResponse != null){
+                    Log.i("Itunes Response Callback", artworkUrlResponse.getArtworkUrl100());
+
+                    // Increasing the resolution of the image retrieved by the URL
+                    String itunesArtworkUrl = artworkUrlResponse.getArtworkUrl100();
+
+                    itunesArtworkUrl = itunesArtworkUrl.replace(
+                            "100x100bb.jpg",
+                            "1000x1000bb.jpg"
+                    );
+
+                    Log.i("Updated Artwork URL", itunesArtworkUrl);
+
+                    newAlbum.setArtworkUrl(itunesArtworkUrl);
+                }
+
                 viewModel.addAlbum(newAlbum);
 
-                Intent intent = new Intent(context, MainActivity.class);
-                context.startActivity(intent);
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_layout_fragment, new HomeFragment())
+                        .commit();
             };
 
-            viewModel.getAlbumAtworkUrl(searchQuery, itunesResponseConsumer);
+            /*
+            NOTE: Ensures that the program will attempt to retrieve the artwork before posting an
+                Album to the API
+             */
+            viewModel.getAlbumArtworkUrl(searchQuery, itunesResponseConsumer);
 
         }
         Log.i("ADD Button", "Add Button Clicked");
@@ -100,14 +123,13 @@ public class ViewAlbumClickHandler {
                 Objects.equals(updatedAlbum.getGenre(), "") ||
                 Objects.equals(updatedAlbum.getReleaseDate(), "")){
 
-            Toast.makeText(context, "Fields cannot be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Fields cannot be empty", Toast.LENGTH_SHORT).show();
         } else {
             long albumId = album.getId();
 
             viewModel.updateAlbum(albumId, updatedAlbum);
 
-            Intent intent = new Intent(context, MainActivity.class);
-            context.startActivity(intent);
+            activity.getSupportFragmentManager().popBackStack();
 
             Log.i("Update Button", "Update Button Clicked");
         }
@@ -118,21 +140,21 @@ public class ViewAlbumClickHandler {
     }
 
     public void onBackButtonClicked(View view){
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
+        // TODO: Add functionality for a dialog to pop up if back is clicked for an edited album that has not been updated
+        activity.getSupportFragmentManager().popBackStack();
     }
 
     private AlertDialog deleteAlbumAlertDialog(){
         // 1. Instantiate an AlertDialog.Builder with its constructor.
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         // Add the buttons.
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 viewModel.deleteAlbum(album.getId()); // Delete the album
 
                 // Return back to the MainActivity
-                Intent intent = new Intent(context, MainActivity.class);
-                context.startActivity(intent);
+                Intent intent = new Intent(activity, MainActivity.class);
+                activity.startActivity(intent);
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

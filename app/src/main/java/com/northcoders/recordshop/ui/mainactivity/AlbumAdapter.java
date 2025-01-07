@@ -12,17 +12,17 @@ import com.bumptech.glide.Glide;
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.AlbumItemBinding;
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.ui.fragments.home.HomeFragmentClickHandler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
 
     private List<Album> albumList;
-    private final MainActivityClickHandler clickHandler;
+    private final HomeFragmentClickHandler clickHandler;
 
-    public AlbumAdapter(List<Album> albumList, MainActivityClickHandler clickHandler) {
+    public AlbumAdapter(List<Album> albumList, HomeFragmentClickHandler clickHandler) {
         this.albumList = albumList;
         this.clickHandler = clickHandler;
     }

@@ -10,6 +10,7 @@ public class RetrofitInstance {
     private static Retrofit retrofit = null;
     private static Retrofit retrofit2 = null;
     private static final String BASE_URL = "http://10.0.2.2:8080/api/v1/";
+    private static final String BASE_URL_IP = "http://192.168.50.167:8080/api/v1/";
     private static final String BASE_URL2 = "https://itunes.apple.com/";
 
     public static AlbumApiService getService(){
@@ -20,7 +21,7 @@ public class RetrofitInstance {
 
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(BASE_URL_IP)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();

@@ -42,7 +42,8 @@ public class MainActivityViewModel extends AndroidViewModel {
         return albumRepository.getAlbumsByArtistName(artistName);
     }
 
-    public void getAlbumAtworkUrl(String searchQuery, Consumer<ArtworkUrl> itunesResponseConsumer){
+    public void getAlbumArtworkUrl(String searchQuery, Consumer<ArtworkUrl> itunesResponseConsumer){
         albumRepository.getAlbumArtworkUrl(searchQuery, itunesResponseConsumer);
     }
 }
+
