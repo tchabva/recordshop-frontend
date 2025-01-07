@@ -212,21 +212,7 @@
                 app:layout_constraintTop_toBottomOf="@id/submit_button"
                 android:visibility="gone"
                 tools:visibility="visible"/>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/back_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:layout_marginEnd="12dp"
-                android:contentDescription="@string/back_button"
-                android:onClick="@{clickHandler::onBackButtonClicked}"
-                android:src="@android:drawable/ic_menu_revert"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>
 </layout>

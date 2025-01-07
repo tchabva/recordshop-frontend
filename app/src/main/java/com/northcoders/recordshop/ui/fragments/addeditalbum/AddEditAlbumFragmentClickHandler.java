@@ -1,8 +1,6 @@
 package com.northcoders.recordshop.ui.fragments.addeditalbum;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -12,14 +10,14 @@ import androidx.fragment.app.FragmentActivity;
 import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.model.ArtworkUrl;
+import com.northcoders.recordshop.model.DeleteAlbumInterface;
 import com.northcoders.recordshop.ui.fragments.home.HomeFragment;
-import com.northcoders.recordshop.ui.mainactivity.MainActivity;
 import com.northcoders.recordshop.ui.mainactivity.MainActivityViewModel;
 
 import java.util.Objects;
 import java.util.function.Consumer;
 
-public class AddEditAlbumFragmentClickHandler {
+public class AddEditAlbumFragmentClickHandler implements DeleteAlbumInterface {
 
     private final Album album;
     private final FragmentActivity activity;
@@ -106,6 +104,8 @@ public class AddEditAlbumFragmentClickHandler {
 
     private void onUpdateButtonClicked(){
 
+        // TODO use consumer to ensure the Response is valid prior to
+
         Album updatedAlbum = new Album(
                 album.getId(),
                 album.getTitle(),
@@ -136,37 +136,12 @@ public class AddEditAlbumFragmentClickHandler {
     }
 
     public void onDeleteButtonClicked(View view){
-        deleteAlbumAlertDialog().show();
-    }
+        AlertDialog deleteAlbumAlertDialog = deleteAlbumAlertDialog(
+                activity,
+                viewModel,
+                album
+        );
 
-    public void onBackButtonClicked(View view){
-        // TODO: Add functionality for a dialog to pop up if back is clicked for an edited album that has not been updated
-        activity.getSupportFragmentManager().popBackStack();
-    }
-
-    private AlertDialog deleteAlbumAlertDialog(){
-        // 1. Instantiate an AlertDialog.Builder with its constructor.
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        // Add the buttons.
-        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                viewModel.deleteAlbum(album.getId()); // Delete the album
-
-                // Return back to the MainActivity
-                Intent intent = new Intent(activity, MainActivity.class);
-                activity.startActivity(intent);
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User cancels the dialog.
-            }
-        });
-        // Set other dialog properties.
-        builder.setMessage(R.string.dialog_delete_message)
-                .setTitle(R.string.dialig_delete_album_title);
-
-        // Create the AlertDialog.
-        return builder.create();
+        deleteAlbumAlertDialog.show();
     }
 }
