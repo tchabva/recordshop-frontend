@@ -104,6 +104,3 @@ The application requires the backend service to function properly:
 
 The app is configured to connect to the backend service. You may need to adjust the backend URL in
 the app's configuration based on your setup environment.
-
-## Note
-This 
