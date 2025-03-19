@@ -17,7 +17,7 @@ This application provides a digital platform for browsing, searching, and managi
       <p><em>Record List Screen</em></p>
     </td>
     <td style="text-align:center">
-      <img src="screenshots/add_album.png" alt="Record Detail" width="200"/>
+      <img src="screenshots/add_album.png" alt="Record Detail" width="1080"/>
       <p><em>Record Detail Screen</em></p>
     </td>
   </tr>
