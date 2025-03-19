@@ -16,12 +16,12 @@ TO DO ADD SCREENSHOTS
 ## Screenshots
 <table>
   <tr>
-    <td><img src="screenshots/home_page.png" alt="Record List" width="200"/></td>
-    <td><img src="screenshots/add_album.png" alt="Record List" width="200"/></td>
-    <td><img src="screenshots/view_album.png" alt="Record Detail" width="200"/></td>
-    <td><img src="screenshots/view_album_delete_dialog.png" alt="Record Detail" width="200"/></td>
-    <td><img src="screenshots/edit_album.png" alt="Record Detail" width="200"/></td>
-    <td><img src="screenshots/edit_album_delete_dialog.png" alt="Record Detail" width="200"/></td>
+    <td><img src="screenshots/home_page.png" alt="Record List" width="400"/></td>
+    <td><img src="screenshots/add_album.png" alt="Record List" width="400"/></td>
+    <td><img src="screenshots/view_album.png" alt="Record Detail" width="400"/></td>
+    <td><img src="screenshots/view_album_delete_dialog.png" alt="Record Detail" width="400"/></td>
+    <td><img src="screenshots/edit_album.png" alt="Record Detail" width="400"/></td>
+    <td><img src="screenshots/edit_album_delete_dialog.png" alt="Record Detail" width="400"/></td>
   </tr>
 </table>
 
