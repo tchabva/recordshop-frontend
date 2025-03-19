@@ -12,7 +12,18 @@ This application provides a digital platform for browsing, searching, and managi
 %%
 TO DO ADD SCREENSHOTS
 %%
-![home_page.png](screenshots/home_page.png) ![view_album.png](screenshots/view_album.png)
+
+## Screenshots
+<table>
+  <tr>
+    <td><img src="screenshots/home_page.png" alt="Record List" width="200"/></td>
+    <td><img src="screenshots/add_album.png" alt="Record List" width="200"/></td>
+    <td><img src="screenshots/view_album.png" alt="Record Detail" width="200"/></td>
+    <td><img src="screenshots/view_album_delete_dialog.png" alt="Record Detail" width="200"/></td>
+    <td><img src="screenshots/edit_album.png" alt="Record Detail" width="200"/></td>
+    <td><img src="screenshots/edit_album_delete_dialog.png" alt="Record Detail" width="200"/></td>
+  </tr>
+</table>
 
 
 ## Tech Stack 🛠️
