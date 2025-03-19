@@ -8,33 +8,44 @@ This application provides a digital platform for browsing, searching, and managi
 - Search functionality with instant results
 - Responsive UI for different screen sizes
 - Smooth animations and transitions
-
-%%
-TO DO ADD SCREENSHOTS
-%%
-
 ## Screenshots
 <table>
+  <!-- Row 1 -->
   <tr>
-    <td><img src="screenshots/home_page.png" alt="Record List" width="1080"/></td>
-    <td><img src="screenshots/add_album.png" alt="Record List" width="1080"/></td>
-    <td><img src="screenshots/view_album.png" alt="Record Detail" width="1080"/></td>
-    <td><img src="screenshots/view_album_delete_dialog.png" alt="Record Detail" width="1080"/></td>
-    <td><img src="screenshots/edit_album.png" alt="Record Detail" width="1080"/></td>
-    <td><img src="screenshots/edit_album_delete_dialog.png" alt="Record Detail" width="1080"/></td>
+    <td style="text-align:center">
+      <img src="screenshots/home_page.png" alt="Record List" width="200"/>
+      <p><em>Record List Screen</em></p>
+    </td>
+    <td style="text-align:center">
+      <img src="screenshots/add_album.png" alt="Record Detail" width="200"/>
+      <p><em>Record Detail Screen</em></p>
+    </td>
   </tr>
 
-   <tr>
-    <td><img src="screenshots/home_page.png" alt="Record List" width="1080"/></td>
-    <td><img src="screenshots/add_album.png" alt="Record List" width="1080"/></td>
-    <td><img src="screenshots/view_album.png" alt="Record Detail" width="1080"/></td>
-    <td><img src="screenshots/view_album_delete_dialog.png" alt="Record Detail" width="1080"/></td>
-    <td><img src="screenshots/edit_album.png" alt="Record Detail" width="1080"/></td>
-    <td><img src="screenshots/edit_album_delete_dialog.png" alt="Record Detail" width="1080"/></td>
+  <!-- Row 2 -->
+  <tr>
+    <td style="text-align:center">
+      <img src="screenshots/view_album.png" alt="Search Screen" width="200"/>
+      <p><em>Search Screen</em></p>
+    </td>
+    <td style="text-align:center">
+      <img src="screenshots/view_album_delete_dialog.png" alt="Profile Screen" width="200"/>
+      <p><em>Profile Screen</em></p>
+    </td>
   </tr>
 
+  <!-- Row 3 -->
+  <tr>
+    <td style="text-align:center">
+      <img src="screenshots/edit_album.png" alt="Settings Screen" width="200"/>
+      <p><em>Settings Screen</em></p>
+    </td>
+    <td style="text-align:center">
+      <img src="screenshots/edit_album_delete_dialog.png" alt="About Screen" width="200"/>
+      <p><em>About Screen</em></p>
+    </td>
+  </tr>
 </table>
-
 
 ## Tech Stack 🛠️
 ### Frontend:
