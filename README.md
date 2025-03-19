@@ -8,6 +8,8 @@ frontend and Spring Boot for the backend.
 This application provides a digital platform for browsing, searching, and managing a record shop
 inventory. The app features a clean, intuitive interface designed with XML and Android Views..
 
+**Note**: Active development is currently happening at [https://github.com/tchabva/Recordshop-Frontend-Compose](https://github.com/tchabva/Recordshop-Frontend-Compose)
+
 ## Features ✨
 
 - Full integration with [Record Shop Backend API](https://github.com/tchabva/recordshopbackend)
@@ -102,3 +104,6 @@ The application requires the backend service to function properly:
 
 The app is configured to connect to the backend service. You may need to adjust the backend URL in
 the app's configuration based on your setup environment.
+
+## Note
+This 
