@@ -12,8 +12,8 @@ This application provides a digital platform for browsing, searching, and managi
 %%
 TO DO ADD SCREENSHOTS
 %%
-## Screenshots
-![Screenshot_20250319_124028.png](../../../Pictures/Northcoders/Projects/Record%20Shop%20Android%20App%20Java/Screenshot_20250319_124028.png)
+![home_page.png](screenshots/home_page.png) ![view_album.png](screenshots/view_album.png)
+
 
 ## Tech Stack 🛠️
 ### Frontend:
