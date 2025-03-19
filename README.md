@@ -23,6 +23,16 @@ TO DO ADD SCREENSHOTS
     <td><img src="screenshots/edit_album.png" alt="Record Detail" width="1080"/></td>
     <td><img src="screenshots/edit_album_delete_dialog.png" alt="Record Detail" width="1080"/></td>
   </tr>
+
+   <tr>
+    <td><img src="screenshots/home_page.png" alt="Record List" width="1080"/></td>
+    <td><img src="screenshots/add_album.png" alt="Record List" width="1080"/></td>
+    <td><img src="screenshots/view_album.png" alt="Record Detail" width="1080"/></td>
+    <td><img src="screenshots/view_album_delete_dialog.png" alt="Record Detail" width="1080"/></td>
+    <td><img src="screenshots/edit_album.png" alt="Record Detail" width="1080"/></td>
+    <td><img src="screenshots/edit_album_delete_dialog.png" alt="Record Detail" width="1080"/></td>
+  </tr>
+
 </table>
 
 
