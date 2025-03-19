@@ -13,7 +13,7 @@ This application provides a digital platform for browsing, searching, and managi
   <!-- Row 1 -->
   <tr>
     <td style="text-align:center">
-      <img src="screenshots/home_page.png" alt="Record List" width="200"/>
+      <img src="screenshots/home_page.png" alt="Record List" width="1080"/>
       <p><em>Record List Screen</em></p>
     </td>
     <td style="text-align:center">
